@@ -7,6 +7,9 @@
 import SwiftUI
 
 struct Dashboard: View {
+    @Environment(\.colorScheme) private var systemColorScheme
+    
+    @State private var appColorScheme: ColorScheme = .light
     @State private var isOn: Bool = false
     
     var body: some View {
@@ -16,9 +19,18 @@ struct Dashboard: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                     .padding(.leading, 20)
-//                Spacer()
-                Toggle("", isOn: $isOn)
-                    .padding(.trailing, 20)
+                Spacer()
+                
+                HStack() {
+                    Image(systemName: isOn ? "moon.fill" : "sun.max.fill")
+                        .foregroundColor(isOn ? .yellow : .orange)
+                    
+                    Toggle("", isOn: $isOn)
+                        .labelsHidden()
+                        .tint(Color.accent)
+                        .scaleEffect(0.8)
+                        .padding(.trailing, 20)
+                }
             }
             Text("Welcome Anne")
                 .font(.system(size: 20, weight: .heavy))
@@ -99,6 +111,27 @@ struct Dashboard: View {
             .padding(.top, 20)
             Spacer()
             
+        }.preferredColorScheme(appColorScheme)
+            .onAppear() {
+            switchAppearance()
+            }.onChange(of: isOn) { oldValue, newValue in
+                if newValue == false {
+                    appColorScheme = .light
+                    return
+                }
+                appColorScheme = .dark
+            }
+    }
+    
+    func switchAppearance() {
+        appColorScheme = systemColorScheme
+        if appColorScheme == .light {
+            isOn = false
+            return
+        }
+        else {
+            isOn = true
+            return
         }
     }
 }

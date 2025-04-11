@@ -11,19 +11,18 @@ struct SignupView: View {
     @State var email: String = ""
     @State var password: String = ""
     
-    
     public struct CustomTextFieldStyle : TextFieldStyle {
-            public func _body(configuration: TextField<Self._Label>) -> some View {
-                configuration
-                    .font(.body)
-                    .padding(12)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .strokeBorder(Color.primary.opacity(0.2), lineWidth: 1)
-                            .shadow( color:.black.opacity(0.9) , radius:2, x:2, y:2)
-                            .background(.white))
-            }
+        public func _body(configuration: TextField<Self._Label>) -> some View {
+            configuration
+                .font(.body)
+                .padding(12)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .strokeBorder(Color.primary.opacity(0.2), lineWidth: 1)
+                        .shadow( color:.black.opacity(0.9) , radius:2, x:2, y:2)
+                        .background(.white))
         }
+    }
     
     var body: some View {
         VStack {
@@ -44,8 +43,14 @@ struct SignupView: View {
             )
             .padding(.bottom, 10)
             
-            TextField(
+            SecureField(
                 "Password",
+                text: $password
+            )
+            .padding(.bottom, 10)
+            
+            SecureField(
+                "Confirm Password",
                 text: $password
             )
             
@@ -74,7 +79,6 @@ struct SignupView: View {
                 }
             }
             .padding(.top, 5)
-
         }
         .textFieldStyle(CustomTextFieldStyle())
         .padding(20)
