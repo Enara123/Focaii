@@ -8,6 +8,13 @@ import SwiftUI
 
 struct Dashboard: View {
     @Environment(\.colorScheme) private var systemColorScheme
+    @EnvironmentObject var auth: AuthModel
+    @Environment(\.managedObjectContext) var context
+    
+    @FetchRequest(
+        entity: Users.entity(),
+        sortDescriptors: []
+    ) var users: FetchedResults<Users>
     
     @State private var appColorScheme: ColorScheme = .light
     @State private var isOn: Bool = false
@@ -19,6 +26,12 @@ struct Dashboard: View {
                     .resizable()
                     .frame(width: 50, height: 50)
                     .padding(.leading, 20)
+                
+                Button("Logout", role: .destructive){
+                    auth.logout()
+                }
+                .foregroundColor(.blue)
+                
                 Spacer()
                 
                 HStack() {
@@ -32,9 +45,14 @@ struct Dashboard: View {
                         .padding(.trailing, 20)
                 }
             }
-            Text("Welcome Anne")
-                .font(.system(size: 20, weight: .heavy))
-                .padding(.bottom, 1)
+            if let user = users.first {
+                Text("Welcome \(user.username ?? "Guest")!")
+                    .font(.system(size: 20, weight: .heavy))
+                    .padding(.bottom, 1)
+            } else {
+                Text("Loading user...")
+            }
+            
             Text("Let's get to work!")
             Image("Main")
             
@@ -113,7 +131,7 @@ struct Dashboard: View {
             
         }.preferredColorScheme(appColorScheme)
             .onAppear() {
-            switchAppearance()
+                switchAppearance()
             }.onChange(of: isOn) { oldValue, newValue in
                 if newValue == false {
                     appColorScheme = .light

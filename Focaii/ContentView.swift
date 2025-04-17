@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var authModel = AuthModel()
+    
     var body: some View {
-        VStack {
+        if authModel.user != nil {
             TabBarView()
+        } else {
+            LoginView(authModel: authModel)
         }
+        
     }
 }
 

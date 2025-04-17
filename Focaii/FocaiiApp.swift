@@ -7,9 +7,12 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFirestore
 
 @main
 struct FocaiiApp: App {
+    let persistenceController = PersistenceController.shared
+    @StateObject private var authModel = AuthModel()
     
     init() {
         FirebaseApp.configure()
@@ -18,6 +21,8 @@ struct FocaiiApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(authModel)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
