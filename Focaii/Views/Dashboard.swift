@@ -56,7 +56,7 @@ struct Dashboard: View {
                     print("Progress Hub")
                 } label: {
                     VStack() {
-                        Image("FocusTime")
+                        Image("Progress")
                             .frame(width: 70, height: 70)
                             .background(Color.BG_1)
                             .cornerRadius(8)
@@ -69,7 +69,7 @@ struct Dashboard: View {
                     print("Deep Focus")
                 } label: {
                     VStack() {
-                        Image("FocusTime")
+                        Image("Deep Focus")
                             .frame(width: 70, height: 70)
                             .background(Color.BG_1)
                             .cornerRadius(8)
@@ -85,7 +85,7 @@ struct Dashboard: View {
                     print("Goal Craft")
                 } label: {
                     VStack() {
-                        Image("FocusTime")
+                        Image("Goal")
                             .frame(width: 70, height: 70)
                             .background(Color.BG_2)
                             .cornerRadius(8)
@@ -98,7 +98,7 @@ struct Dashboard: View {
                     print("Mind Well")
                 } label: {
                     VStack() {
-                        Image("FocusTime")
+                        Image("Mind Well")
                             .frame(width: 70, height: 70)
                             .background(Color.BG_2)
                             .cornerRadius(8)
