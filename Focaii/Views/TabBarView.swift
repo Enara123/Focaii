@@ -10,23 +10,29 @@ import SwiftUI
 struct TabBarView: View {
     var body: some View {
         TabView {
-            Dashboard()
-                .tabItem {
-                    Image(systemName: "house.fill")
-                    Text("Home")
-                }
+            NavigationStack {
+                Dashboard()
+            }
+            .tabItem {
+                Image(systemName: "house.fill")
+                Text("Home")
+            }
 
-            LoginView()
-                .tabItem {
-                    Image(systemName: "clock")
-                    Text("Focus Time")
-                }
+            NavigationStack {
+//                FocusTimeView()
+            }
+            .tabItem {
+                Image(systemName: "clock")
+                Text("Focus Time")
+            }
 
-            SignupView()
-                .tabItem {
-                    Image(systemName: "chart.bar")
-                    Text("Progress Hub")
-                }
+            NavigationStack {
+//                ProgressHubView()
+            }
+            .tabItem {
+                Image(systemName: "chart.bar")
+                Text("Progress Hub")
+            }
         }
         .accentColor(Color.accent)
     }

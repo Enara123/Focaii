@@ -16,7 +16,7 @@ struct GoalHomeView: View {
                 .padding(.bottom, 20)
             
             // Set a Goal
-            NavigationLink(destination: Text("Set a goal")) {
+            NavigationLink(destination: SetGoalView()) {
                 HStack {
                     Image("Goal")
                         .frame(width: 70, height: 70)

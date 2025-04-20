@@ -57,9 +57,7 @@ struct Dashboard: View {
             Image("Main")
             
             HStack(spacing:40) {
-                Button{
-                    print("Focus time")
-                } label: {
+                NavigationLink(destination: GoalHomeView()) {
                     VStack() {
                         Image("FocusTime")
                             .frame(width: 70, height: 70)
@@ -70,9 +68,8 @@ struct Dashboard: View {
                             .foregroundColor(Color.primary)
                     }
                 }
-                Button{
-                    print("Progress Hub")
-                } label: {
+                
+                NavigationLink(destination: GoalHomeView()) {
                     VStack() {
                         Image("Progress")
                             .frame(width: 70, height: 70)
@@ -83,9 +80,7 @@ struct Dashboard: View {
                             .foregroundColor(Color.primary)
                     }
                 }
-                Button{
-                    print("Deep Focus")
-                } label: {
+                NavigationLink(destination: GoalHomeView()) {
                     VStack() {
                         Image("Deep Focus")
                             .frame(width: 70, height: 70)
@@ -99,9 +94,7 @@ struct Dashboard: View {
             }
             
             HStack(spacing:40) {
-                Button{
-                    print("Goal Craft")
-                } label: {
+                NavigationLink(destination: GoalHomeView()) {
                     VStack() {
                         Image("Goal")
                             .frame(width: 70, height: 70)
@@ -112,9 +105,7 @@ struct Dashboard: View {
                             .foregroundColor(Color.primary)
                     }
                 }
-                Button{
-                    print("Mind Well")
-                } label: {
+                NavigationLink(destination: GoalHomeView()) {
                     VStack() {
                         Image("Mind Well")
                             .frame(width: 70, height: 70)
@@ -155,5 +146,7 @@ struct Dashboard: View {
 }
 
 #Preview {
-    Dashboard()
+    NavigationStack {
+        Dashboard()
+    }
 }
