@@ -130,6 +130,7 @@ struct Dashboard: View {
                 }
                 appColorScheme = .dark
             }
+            .navigationBarBackButtonHidden(true)
     }
     
     func switchAppearance() {

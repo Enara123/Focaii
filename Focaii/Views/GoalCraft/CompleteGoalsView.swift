@@ -16,8 +16,6 @@ struct CompleteGoalsView: View {
                 Text("Take a look at all your completed goals")
                     .padding(.bottom, 20)
                 
-                // Set a Goal
-                
                 HStack {
                     Image("DoneGoals")
                         .frame(width: 70, height: 70)

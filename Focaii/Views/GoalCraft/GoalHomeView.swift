@@ -16,7 +16,7 @@ struct GoalHomeView: View {
                 .padding(.bottom, 20)
             
             // Set a Goal
-            NavigationLink(destination: SetGoalView()) {
+            NavigationLink(destination: SetGoalView(goalDraft: GoalModel())) {
                 HStack {
                     Image("Goal")
                         .frame(width: 70, height: 70)
@@ -41,7 +41,7 @@ struct GoalHomeView: View {
             .padding(.bottom, 10)
             
             // Goals in Progress
-            NavigationLink(destination: Text("Goals in Progress")) {
+            NavigationLink(destination: GoalsInProgressView()) {
                 HStack {
                     Image("InProgress")
                         .frame(width: 70, height: 70)
@@ -66,7 +66,7 @@ struct GoalHomeView: View {
             .padding(.bottom, 10)
             
             // Completed Goals
-            NavigationLink(destination: Text("Completed Goals")) {
+            NavigationLink(destination: CompleteGoalsView()) {
                 HStack {
                     Image("DoneGoals")
                         .frame(width: 70, height: 70)

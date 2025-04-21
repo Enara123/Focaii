@@ -8,94 +8,77 @@
 import SwiftUI
 
 struct GoalsInProgressView: View {
-    @State var deadline: String = ""
-    @State private var task1: String = ""
-    @State private var task2: String = ""
-    @State private var task3: String = ""
-    @State private var task4: String = ""
-    @State private var task5: String = ""
-    @State private var task6: String = ""
+    @StateObject private var viewModel = GoalsViewModel()
+    @State private var selectedGoalIndex: Int = 0
+    
     var body: some View {
         ScrollView {
-            VStack(spacing: 20)   {
+            VStack(spacing: 20) {
                 VStack(spacing: 4) {
                     Text("Goals in Progress")
                         .font(.system(size: 20, weight: .heavy))
-                    Text("All goals you are working on!")
+                    Text("Choose a goal to see details")
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                
+                Picker("Select a Goal", selection: $selectedGoalIndex) {
+                    ForEach(viewModel.goals.indices, id: \.self) { index in
+                        Text(viewModel.goals[index].goalName).tag(index)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 18)
+                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                )
+                
+                if viewModel.goals.indices.contains(selectedGoalIndex) {
+                    let selectedGoal = viewModel.goals[selectedGoalIndex]
                     
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Deadline")
                             .font(.headline)
-                        TextField("e.g. 02/04/25", text: $deadline)
+                        Text(formatDate(selectedGoal.deadline))
                             .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
                             .background(
                                 RoundedRectangle(cornerRadius: 18)
                                     .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                             )
-                    }
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Milestone 1")
-                            .font(.headline)
                         
-                        TextField("e.g. Study all chapters", text: $task1)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                        TextField("e.g. Practice with question papers", text: $task2)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                        TextField("e.g. Revision", text: $task3)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1))
+                        ForEach(selectedGoal.milestones.indices, id: \.self) { i in
+                            let milestone = selectedGoal.milestones[i]
+                            
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Milestone \(i + 1): \(milestone.title)")
+                                    .font(.headline)
+                                
+                                VStack(alignment: .leading, spacing: 10) {
+                                    ForEach(milestone.tasks.filter { !$0.isEmpty }, id: \.self) { task in
+                                        
+                                        Text(task)
+                                            .padding()
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                            .background(
+                                                RoundedRectangle(cornerRadius: 18)
+                                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                            )
+                                    }
+                                }
+                            }
+                            
+                        }
                     }
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Milestone 1")
-                            .font(.headline)
-                        
-                        TextField("e.g. Study all chapters", text: $task1)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                        TextField("e.g. Practice with question papers", text: $task2)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                        TextField("e.g. Revision", text: $task3)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                    }
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text("Milestone 1")
-                            .font(.headline)
-                        
-                        TextField("e.g. Study all chapters", text: $task1)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                        TextField("e.g. Practice with question papers", text: $task2)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                        TextField("e.g. Revision", text: $task3)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(Color.gray.opacity(0.3), lineWidth: 1))
-                    }                }
-                .frame(maxWidth: .infinity, alignment: .center)
+                } else {
+                    Text("No goals found.")
+                        .foregroundColor(.gray)
+                }
             }
             .padding()
+        }
+        .onAppear {
+            viewModel.fetchGoals()
         }
     }
 }

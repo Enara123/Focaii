@@ -6,8 +6,16 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
+import FirebaseAuth
 
 struct ReviewGoalView: View {
+    @ObservedObject var goalDraft: GoalModel
+
+    @State private var showSuccessAlert = false
+    @State private var shouldNavigate = false
+    @State private var errorMessage: String?
+
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
@@ -20,55 +28,123 @@ struct ReviewGoalView: View {
 
                 RectangleStepIndicator(totalSteps: 3, currentStep: 2)
                 
+                // Goal Overview Card
                 VStack(alignment: .leading, spacing: 20) {
-                        Text("Score above 80% for final exam")
-                        .font(.system(size: 20, weight: .bold))
-            
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Deadline:")
-                            .font(.headline)
-                        Text("02/05/25")
+                    Text(goalDraft.goalName)
+                        .font(.title2)
+                        .bold()
+                        .frame(width: 300, alignment: .leading)
+
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text("Deadline: \(formatDate(goalDraft.deadline))")
                     }
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("1. Study all chapters")
-                            .font(.headline)
-                        Text("• Study chap 1")
-                        Text("• Study chap 2")
-                        Text("• Study chap 3")
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("2. Practice with question papers")
-                            .font(.headline)
-                        Text("• Do paper 1")
-                        Text("• Do paper 2")
-                    }
-                    
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("3. Revision")
-                            .font(.headline)
-                        Text("• Go through short notes")
-                        Text("• Redo paper 1")
-                        Text("• Review notes")
+                    .font(.subheadline)
+                    .foregroundColor(.primary)
+                    .frame(width: 300, alignment: .leading)
+                }
+                .frame(width: 320)
+                .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 18)
+                        .fill(Color.BG_2)
+                        .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
+                )
+
+
+                // Milestones Section
+                VStack(alignment: .leading, spacing: 20) {
+                    ForEach(goalDraft.milestones.indices, id: \.self) { i in
+                        let milestone = goalDraft.milestones[i]
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Milestone \(i + 1): \(milestone.title)")
+                                .font(.headline)
+                                .frame(width: 300, alignment: .leading)
+
+                            VStack(alignment: .leading, spacing: 6) {
+                                ForEach(milestone.tasks.filter { !$0.isEmpty }, id: \.self) { task in
+                                    HStack(alignment: .top) {
+                                        Image(systemName: "circle")
+                                            .foregroundColor(.accentColor)
+                                        Text(task)
+                                            .font(.subheadline)
+                                            .frame(width: 260, alignment: .leading)
+                                    }
+                                }
+                            }
+                            .padding(.top, 5)
+                        }
+                        .frame(width: 320)
+                        .padding()
+                        .background(
+                            RoundedRectangle(cornerRadius: 18)
+                                .fill(Color(.systemBackground))
+                                .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
+                        )
                     }
                 }
+                
+                .alert("Goal Saved!", isPresented: $showSuccessAlert) {
+                    Button("OK") {
+                        shouldNavigate = true
+                    }
+                } message: {
+                    Text("Your goal has been successfully saved.")
+                }
 
-                NavigationLink(destination: Dashboard()) {
+                NavigationLink(destination: GoalHomeView(), isActive: $shouldNavigate) {
+                    EmptyView()
+                }
+                .hidden()
+
+                Button(action: {
+                    submitGoalToFirestore()
+                }) {
                     Text("Set Goal!")
                         .frame(width: 343, height: 45)
                         .background(Color.accent)
                         .cornerRadius(8)
                         .foregroundColor(.white)
-                        .padding(.top, 15)
                         .shadow(color: .black.opacity(0.7), radius: 2, x: 2, y: 2)
                 }
+
             }
         }
     }
+    
+    func submitGoalToFirestore() {
+        let db = Firestore.firestore()
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+
+        let goalData: [String: Any] = [
+            "goalName": goalDraft.goalName,
+            "deadline": goalDraft.deadline,
+            "milestones": goalDraft.milestones.map { milestone in
+                return [
+                    "title": milestone.title,
+                    "tasks": milestone.tasks.filter { !$0.isEmpty }
+                ]
+            },
+            "createdAt": Timestamp()
+        ]
+
+        db.collection("usernames")
+            .document(userId)
+            .collection("goals")
+            .addDocument(data: goalData) { error in
+                if let error = error {
+                    print("❌ Error saving goal: \(error.localizedDescription)")
+                } else {
+                    print("✅ Goal saved!")
+                    showSuccessAlert = true
+                }
+            }
+    }
+
+
 }
 
 #Preview {
-    ReviewGoalView()
+    ReviewGoalView(goalDraft: GoalModel())
 }
 

@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SetTasksView: View {
-    @State private var milestone1Tasks: [String] = [""]
-    @State private var milestone2Tasks: [String] = [""]
-    @State private var milestone3Tasks: [String] = [""]
+    @ObservedObject var goalDraft: GoalModel
+    @State private var shouldNavigate = false
+    @State private var errorMessage: String? = nil
     
     var body: some View {
         ScrollView() {
@@ -23,45 +23,70 @@ struct SetTasksView: View {
                 
                 RectangleStepIndicator(totalSteps: 3, currentStep: 1)
                 
-                // Milestone 1
-                MilestoneView(title: "Study All Chapters", tasks: $milestone1Tasks)
+                ForEach($goalDraft.milestones) { $milestone in
+                    MilestoneView(milestone: $milestone)
+                }
                 
-                // Milestone 2
-                MilestoneView(title: "Practice with question papers", tasks: $milestone2Tasks)
+                if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .font(.subheadline)
+                        .padding()
+                }
                 
-                // Milestone 3
-                MilestoneView(title: "Revision", tasks: $milestone3Tasks)
+                NavigationLink(destination: ReviewGoalView(goalDraft: goalDraft), isActive: $shouldNavigate) {
+                    EmptyView()
+                }
+                .hidden()
                 
-                NavigationLink(destination: ReviewGoalView()) {
+                Button(action: {
+                    if validateFields() {
+                        print("✅ All fields valid.")
+                        for (index, milestone) in goalDraft.milestones.enumerated() {
+                            print("Milestone \(index + 1): \(milestone.title)")
+                            for task in milestone.tasks {
+                                print("  - \(task)")
+                            }
+                        }
+                        shouldNavigate = true
+                    } else {
+                        errorMessage = "❌ Please add at least one task to each milestone."
+                    }
+                }) {
                     Text("Review Goal")
                         .frame(width: 343, height: 45)
-                        .background(Color.accent)
-                        .cornerRadius(8)
-                        .foregroundColor(.white)
+                        .background(
+                            RoundedRectangle(cornerRadius: 18)
+                                .stroke(Color.accent, lineWidth: 2))
+                        .foregroundColor(Color.accent)
                         .padding(.top, 15)
-                        .shadow(color: .black.opacity(0.7), radius: 2, x: 2, y: 2)
                 }
             }
             .padding()
         }
     }
+    
+    func validateFields() -> Bool {
+        return goalDraft.milestones.allSatisfy { milestone in
+            milestone.tasks.contains(where: { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
+        }
+    }
 }
 
 struct MilestoneView: View {
-    var title: String
-    @Binding var tasks: [String]
+    @Binding var milestone: Milestone
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(title)
+            Text(milestone.title)
                 .font(.headline)
 
             Text("Add tasks")
                 .font(.system(size: 15))
 
-            ForEach(tasks.indices, id: \.self) { index in
+            ForEach(milestone.tasks.indices, id: \.self) { index in
                 HStack {
-                    TextField("Enter task...", text: $tasks[index])
+                    TextField("Enter task...", text: $milestone.tasks[index])
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 18)
@@ -69,7 +94,7 @@ struct MilestoneView: View {
                         )
 
                     Button(action: {
-                        tasks.remove(at: index)
+                        milestone.tasks.remove(at: index)
                     }) {
                         Image(systemName: "trash")
                             .foregroundColor(.red)
@@ -79,7 +104,7 @@ struct MilestoneView: View {
             }
 
             Button(action: {
-                tasks.append("")
+                milestone.tasks.append("")
             }) {
                 HStack {
                     Image(systemName: "plus.circle.fill")
@@ -94,5 +119,5 @@ struct MilestoneView: View {
 }
 
 #Preview {
-    SetTasksView()
+    SetTasksView(goalDraft: GoalModel())
 }
