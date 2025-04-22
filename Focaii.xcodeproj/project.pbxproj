@@ -10,6 +10,15 @@
 		F52A577C2DA8E2A700D7C691 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F52A577B2DA8E2A700D7C691 /* GoogleService-Info.plist */; };
 		F52A577E2DA8F29B00D7C691 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F52A577D2DA8F29B00D7C691 /* FirebaseFirestore */; };
 		F52A57C92DB0ED4D00D7C691 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F52A57C72DB0ED4D00D7C691 /* Data.xcdatamodeld */; };
+		F5643C452DB7DC3F003D06E1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */; };
+		F5643C472DB7DC3F003D06E1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */; };
+		F5643C582DB7DC40003D06E1 /* TimerLiveActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F5643C422DB7DC3F003D06E1 /* TimerLiveActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F5643C632DB7DCF2003D06E1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */; };
+		F5643C642DB7DCF2003D06E1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */; };
+		F5643C712DB7DCF3003D06E1 /* TimerLiveActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F5643C622DB7DCF2003D06E1 /* TimerLiveActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F5643C7B2DB7DD5E003D06E1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */; };
+		F5643C7C2DB7DD5E003D06E1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */; };
+		F5643C892DB7DD5F003D06E1 /* FocusTimeLiveActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F5643C7A2DB7DD5E003D06E1 /* FocusTimeLiveActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F59507612DA7C7B3001A5CB1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F59507602DA7C7B3001A5CB1 /* FirebaseAnalytics */; };
 		F59507632DA7C7B3001A5CB1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F59507622DA7C7B3001A5CB1 /* FirebaseAuth */; };
 /* End PBXBuildFile section */
@@ -29,7 +38,44 @@
 			remoteGlobalIDString = 89B6C1FC2D928C6200D3A20E;
 			remoteInfo = Focaii;
 		};
+		F5643C562DB7DC40003D06E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89B6C1F52D928C6200D3A20E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5643C412DB7DC3F003D06E1;
+			remoteInfo = TimerLiveActivityExtension;
+		};
+		F5643C6F2DB7DCF3003D06E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89B6C1F52D928C6200D3A20E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5643C612DB7DCF2003D06E1;
+			remoteInfo = TimerLiveActivityExtension;
+		};
+		F5643C872DB7DD5F003D06E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89B6C1F52D928C6200D3A20E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F5643C792DB7DD5E003D06E1;
+			remoteInfo = FocusTimeLiveActivityExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F5643C592DB7DC40003D06E1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F5643C892DB7DD5F003D06E1 /* FocusTimeLiveActivityExtension.appex in Embed Foundation Extensions */,
+				F5643C712DB7DCF3003D06E1 /* TimerLiveActivityExtension.appex in Embed Foundation Extensions */,
+				F5643C582DB7DC40003D06E1 /* TimerLiveActivityExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		89B6C1FD2D928C6200D3A20E /* Focaii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Focaii.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,11 +83,29 @@
 		89B6C2172D928C6200D3A20E /* FocaiiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocaiiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F52A577B2DA8E2A700D7C691 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F52A57C82DB0ED4D00D7C691 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		F5643C422DB7DC3F003D06E1 /* TimerLiveActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimerLiveActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F5643C622DB7DCF2003D06E1 /* TimerLiveActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimerLiveActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5643C7A2DB7DD5E003D06E1 /* FocusTimeLiveActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FocusTimeLiveActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F5643C002DB7D916003D06E1 /* Exceptions for "Focaii" folder in "Focaii" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 89B6C1FC2D928C6200D3A20E /* Focaii */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		89B6C1FF2D928C6200D3A20E /* Focaii */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F5643C002DB7D916003D06E1 /* Exceptions for "Focaii" folder in "Focaii" target */,
+			);
 			path = Focaii;
 			sourceTree = "<group>";
 		};
@@ -82,6 +146,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F5643C3F2DB7DC3F003D06E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5643C472DB7DC3F003D06E1 /* SwiftUI.framework in Frameworks */,
+				F5643C452DB7DC3F003D06E1 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5643C5F2DB7DCF2003D06E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5643C642DB7DCF2003D06E1 /* SwiftUI.framework in Frameworks */,
+				F5643C632DB7DCF2003D06E1 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5643C772DB7DD5E003D06E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F5643C7C2DB7DD5E003D06E1 /* SwiftUI.framework in Frameworks */,
+				F5643C7B2DB7DD5E003D06E1 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -92,6 +183,7 @@
 				89B6C1FF2D928C6200D3A20E /* Focaii */,
 				89B6C2102D928C6200D3A20E /* FocaiiTests */,
 				89B6C21A2D928C6200D3A20E /* FocaiiUITests */,
+				F5643C432DB7DC3F003D06E1 /* Frameworks */,
 				89B6C1FE2D928C6200D3A20E /* Products */,
 				F52A577B2DA8E2A700D7C691 /* GoogleService-Info.plist */,
 			);
@@ -103,8 +195,20 @@
 				89B6C1FD2D928C6200D3A20E /* Focaii.app */,
 				89B6C20D2D928C6200D3A20E /* FocaiiTests.xctest */,
 				89B6C2172D928C6200D3A20E /* FocaiiUITests.xctest */,
+				F5643C422DB7DC3F003D06E1 /* TimerLiveActivityExtension.appex */,
+				F5643C622DB7DCF2003D06E1 /* TimerLiveActivityExtension.appex */,
+				F5643C7A2DB7DD5E003D06E1 /* FocusTimeLiveActivityExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F5643C432DB7DC3F003D06E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */,
+				F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -117,10 +221,14 @@
 				89B6C1F92D928C6200D3A20E /* Sources */,
 				89B6C1FA2D928C6200D3A20E /* Frameworks */,
 				89B6C1FB2D928C6200D3A20E /* Resources */,
+				F5643C592DB7DC40003D06E1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F5643C572DB7DC40003D06E1 /* PBXTargetDependency */,
+				F5643C702DB7DCF3003D06E1 /* PBXTargetDependency */,
+				F5643C882DB7DD5F003D06E1 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				89B6C1FF2D928C6200D3A20E /* Focaii */,
@@ -181,6 +289,63 @@
 			productReference = 89B6C2172D928C6200D3A20E /* FocaiiUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		F5643C412DB7DC3F003D06E1 /* TimerLiveActivityExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5643C5C2DB7DC40003D06E1 /* Build configuration list for PBXNativeTarget "TimerLiveActivityExtension" */;
+			buildPhases = (
+				F5643C3E2DB7DC3F003D06E1 /* Sources */,
+				F5643C3F2DB7DC3F003D06E1 /* Frameworks */,
+				F5643C402DB7DC3F003D06E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimerLiveActivityExtension;
+			packageProductDependencies = (
+			);
+			productName = TimerLiveActivityExtension;
+			productReference = F5643C422DB7DC3F003D06E1 /* TimerLiveActivityExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F5643C612DB7DCF2003D06E1 /* TimerLiveActivityExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5643C722DB7DCF3003D06E1 /* Build configuration list for PBXNativeTarget "TimerLiveActivityExtension" */;
+			buildPhases = (
+				F5643C5E2DB7DCF2003D06E1 /* Sources */,
+				F5643C5F2DB7DCF2003D06E1 /* Frameworks */,
+				F5643C602DB7DCF2003D06E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TimerLiveActivityExtension;
+			packageProductDependencies = (
+			);
+			productName = TimerLiveActivityExtension;
+			productReference = F5643C622DB7DCF2003D06E1 /* TimerLiveActivityExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F5643C792DB7DD5E003D06E1 /* FocusTimeLiveActivityExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5643C8A2DB7DD5F003D06E1 /* Build configuration list for PBXNativeTarget "FocusTimeLiveActivityExtension" */;
+			buildPhases = (
+				F5643C762DB7DD5E003D06E1 /* Sources */,
+				F5643C772DB7DD5E003D06E1 /* Frameworks */,
+				F5643C782DB7DD5E003D06E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FocusTimeLiveActivityExtension;
+			packageProductDependencies = (
+			);
+			productName = FocusTimeLiveActivityExtension;
+			productReference = F5643C7A2DB7DD5E003D06E1 /* FocusTimeLiveActivityExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -201,6 +366,15 @@
 					89B6C2162D928C6200D3A20E = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 89B6C1FC2D928C6200D3A20E;
+					};
+					F5643C412DB7DC3F003D06E1 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					F5643C612DB7DCF2003D06E1 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					F5643C792DB7DD5E003D06E1 = {
+						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
@@ -224,6 +398,9 @@
 				89B6C1FC2D928C6200D3A20E /* Focaii */,
 				89B6C20C2D928C6200D3A20E /* FocaiiTests */,
 				89B6C2162D928C6200D3A20E /* FocaiiUITests */,
+				F5643C412DB7DC3F003D06E1 /* TimerLiveActivityExtension */,
+				F5643C612DB7DCF2003D06E1 /* TimerLiveActivityExtension */,
+				F5643C792DB7DD5E003D06E1 /* FocusTimeLiveActivityExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -245,6 +422,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		89B6C2152D928C6200D3A20E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5643C402DB7DC3F003D06E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5643C602DB7DCF2003D06E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5643C782DB7DD5E003D06E1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -276,6 +474,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F5643C3E2DB7DC3F003D06E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5643C5E2DB7DCF2003D06E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5643C762DB7DD5E003D06E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -288,6 +507,21 @@
 			isa = PBXTargetDependency;
 			target = 89B6C1FC2D928C6200D3A20E /* Focaii */;
 			targetProxy = 89B6C2182D928C6200D3A20E /* PBXContainerItemProxy */;
+		};
+		F5643C572DB7DC40003D06E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5643C412DB7DC3F003D06E1 /* TimerLiveActivityExtension */;
+			targetProxy = F5643C562DB7DC40003D06E1 /* PBXContainerItemProxy */;
+		};
+		F5643C702DB7DCF3003D06E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5643C612DB7DCF2003D06E1 /* TimerLiveActivityExtension */;
+			targetProxy = F5643C6F2DB7DCF3003D06E1 /* PBXContainerItemProxy */;
+		};
+		F5643C882DB7DD5F003D06E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F5643C792DB7DD5E003D06E1 /* FocusTimeLiveActivityExtension */;
+			targetProxy = F5643C872DB7DD5F003D06E1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -419,8 +653,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Focaii/Preview Content\"";
+				DEVELOPMENT_TEAM = 8A36CARXB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Focaii/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -447,8 +683,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Focaii/Preview Content\"";
+				DEVELOPMENT_TEAM = 8A36CARXB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Focaii/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -535,6 +773,168 @@
 			};
 			name = Release;
 		};
+		F5643C5A2DB7DC40003D06E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A36CARXB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimerLiveActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimerLiveActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Siluni.Focaii.TimerLiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F5643C5B2DB7DC40003D06E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A36CARXB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimerLiveActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimerLiveActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Siluni.Focaii.TimerLiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F5643C732DB7DCF3003D06E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A36CARXB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimerLiveActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimerLiveActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Siluni.Focaii.TimerLiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F5643C742DB7DCF3003D06E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A36CARXB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimerLiveActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimerLiveActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Siluni.Focaii.TimerLiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F5643C8B2DB7DD5F003D06E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A36CARXB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FocusTimeLiveActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FocusTimeLiveActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Siluni.Focaii.FocusTimeLiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F5643C8C2DB7DD5F003D06E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A36CARXB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FocusTimeLiveActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FocusTimeLiveActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Siluni.Focaii.FocusTimeLiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -570,6 +970,33 @@
 			buildConfigurations = (
 				89B6C2282D928C6200D3A20E /* Debug */,
 				89B6C2292D928C6200D3A20E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5643C5C2DB7DC40003D06E1 /* Build configuration list for PBXNativeTarget "TimerLiveActivityExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5643C5A2DB7DC40003D06E1 /* Debug */,
+				F5643C5B2DB7DC40003D06E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5643C722DB7DCF3003D06E1 /* Build configuration list for PBXNativeTarget "TimerLiveActivityExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5643C732DB7DCF3003D06E1 /* Debug */,
+				F5643C742DB7DCF3003D06E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5643C8A2DB7DD5F003D06E1 /* Build configuration list for PBXNativeTarget "FocusTimeLiveActivityExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5643C8B2DB7DD5F003D06E1 /* Debug */,
+				F5643C8C2DB7DD5F003D06E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

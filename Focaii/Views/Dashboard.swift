@@ -57,7 +57,7 @@ struct Dashboard: View {
             Image("Main")
             
             HStack(spacing:40) {
-                NavigationLink(destination: GoalHomeView()) {
+                NavigationLink(destination: FocusTimeView()) {
                     VStack() {
                         Image("FocusTime")
                             .frame(width: 70, height: 70)

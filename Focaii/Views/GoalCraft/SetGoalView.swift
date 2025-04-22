@@ -88,7 +88,7 @@ struct SetGoalView: View {
                     }
                 }) {
                     Text("Next")
-                        .frame(width: 343, height: 45)
+                        .frame(width: 368, height: 45)
                         .background(
                             RoundedRectangle(cornerRadius: 18)
                                 .stroke(Color.accent, lineWidth: 2))

@@ -54,7 +54,7 @@ struct SetTasksView: View {
                     }
                 }) {
                     Text("Review Goal")
-                        .frame(width: 343, height: 45)
+                        .frame(width: 368, height: 45)
                         .background(
                             RoundedRectangle(cornerRadius: 18)
                                 .stroke(Color.accent, lineWidth: 2))

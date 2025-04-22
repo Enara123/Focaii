@@ -101,7 +101,7 @@ struct ReviewGoalView: View {
                     submitGoalToFirestore()
                 }) {
                     Text("Set Goal!")
-                        .frame(width: 343, height: 45)
+                        .frame(width: 368, height: 45)
                         .background(Color.accent)
                         .cornerRadius(8)
                         .foregroundColor(.white)
@@ -129,7 +129,7 @@ struct ReviewGoalView: View {
         ]
 
         db.collection("usernames")
-            .document(userId)
+            .document("Siluni")
             .collection("goals")
             .addDocument(data: goalData) { error in
                 if let error = error {

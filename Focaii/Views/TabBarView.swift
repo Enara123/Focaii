@@ -19,7 +19,7 @@ struct TabBarView: View {
             }
 
             NavigationStack {
-//                FocusTimeView()
+                FocusTimeView()
             }
             .tabItem {
                 Image(systemName: "clock")

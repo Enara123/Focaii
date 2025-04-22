@@ -9,6 +9,13 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
+struct TaskInfo: Identifiable, Hashable {
+    let id = UUID()
+    let title: String
+    let goalName: String
+    let milestoneTitle: String
+}
+
 struct Milestone: Identifiable, Codable {
     var id = UUID()
     var title: String
@@ -56,42 +63,55 @@ class GoalModel: ObservableObject, Codable {
 
 class GoalsViewModel: ObservableObject {
     @Published var goals: [GoalModel] = []
+    @Published var allTaskInfos: [TaskInfo] = []
     
     func fetchGoals() {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
+//        guard let userId = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
         
-        db.collection("usernames").document(userId).collection("goals").getDocuments { snapshot, error in
+        db.collection("usernames").document("Siluni").collection("goals").getDocuments { snapshot, error in
             if let error = error {
                 print("❌ Error fetching goals: \(error.localizedDescription)")
                 return
             }
-            
+
             guard let documents = snapshot?.documents else { return }
-            
-            self.goals = documents.compactMap { doc -> GoalModel? in
+
+            var fetchedGoals: [GoalModel] = []
+            var taskInfoList: [TaskInfo] = []
+
+            for doc in documents {
                 let data = doc.data()
-                
                 guard let goalName = data["goalName"] as? String,
                       let timestamp = data["deadline"] as? Timestamp,
                       let milestonesArray = data["milestones"] as? [[String: Any]]
-                else {
-                    return nil
-                }
-                
+                else { continue }
+
                 let deadline = timestamp.dateValue()
+
                 let milestones: [Milestone] = milestonesArray.compactMap { milestoneDict in
                     guard let title = milestoneDict["title"] as? String,
-                          let tasks = milestoneDict["tasks"] as? [String] else {
-                        return nil
+                          let tasks = milestoneDict["tasks"] as? [String] else { return nil }
+
+                    for task in tasks {
+                        let taskInfo = TaskInfo(title: task, goalName: goalName, milestoneTitle: title)
+                        taskInfoList.append(taskInfo)
                     }
+
                     return Milestone(title: title, tasks: tasks)
                 }
-                
-                return GoalModel(goalName: goalName, deadline: deadline, milestones: milestones)
+
+                let goal = GoalModel(goalName: goalName, deadline: deadline, milestones: milestones)
+                fetchedGoals.append(goal)
+            }
+
+            DispatchQueue.main.async {
+                self.goals = fetchedGoals
+                self.allTaskInfos = taskInfoList
             }
         }
     }
+
 }
 
 

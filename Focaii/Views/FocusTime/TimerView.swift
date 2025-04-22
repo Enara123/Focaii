@@ -1,0 +1,176 @@
+//
+//  TimerView.swift
+//  Focaii
+//
+//  Created by Siluni on 2025-04-21.
+//
+
+import SwiftUI
+
+struct TimerView: View {
+    @StateObject private var viewModel = FocusTimerViewModel()
+    @State private var showEndSessionAlert = false
+    @State private var showTaskCompleteAlert = false
+    @State private var navigateBack = false
+    
+    let taskTitle: String
+    let goalName: String
+    let timerType: FocusTimerType
+    
+    var body: some View {
+        VStack(alignment: .center, spacing: 20) {
+            VStack(alignment: .center) {
+                Text(taskTitle)
+                    .font(.title2)
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.bottom, 10)
+
+                Text(goalName)
+                    .font(.subheadline)
+                    .foregroundColor(Color.secondary)
+                    .multilineTextAlignment(.center)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .onAppear {
+                        viewModel.timerType = timerType
+                    }
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            
+            // Timer Ring
+            ZStack {
+                Circle()
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 12)
+                
+                Circle()
+                    .trim(from: 0.0, to: CGFloat(viewModel.progress))
+                    .stroke(Color.BG_1, style: StrokeStyle(lineWidth: 15, lineCap: .round))
+                    .rotationEffect(.degrees(-90))
+                    .animation(.linear, value: viewModel.progress)
+                
+                Text(viewModel.formattedTime())
+                    .font(.system(size: 36, weight: .semibold, design: .rounded))
+            }
+            .frame(width: 220, height: 220)
+            .padding(.top, 30)
+            
+            // Action Buttons
+            HStack(spacing: 40) {
+                // Cancel
+                TimerActionButton(
+                    systemImage: "xmark",
+                    action: viewModel.cancelTimer,
+                    foregroundColor: .red.opacity(0.8),
+                    backgroundColor: Color.red.opacity(0.1)
+                )
+                
+                // Pause or Play
+                TimerActionButton(
+                    systemImage: viewModel.isRunning ? "pause.fill" : "play.fill",
+                    action: {
+                        viewModel.isRunning ? viewModel.pauseTimer() : viewModel.startTimer()
+                    },
+                    isFilled: true,
+                    foregroundColor: .gray,
+                    backgroundColor: Color.gray.opacity(0.2)
+                )
+                
+                // Restart
+                TimerActionButton(
+                    systemImage: "gobackward",
+                    action: viewModel.restartTimer,
+                    foregroundColor: .blue,
+                    backgroundColor: Color.blue.opacity(0.1)
+                )
+            }
+            .padding(.top, 30)
+            
+            NavigationLink( destination: Dashboard(), isActive: $navigateBack
+            ) {
+                EmptyView()
+            }
+            
+            Button(action: {
+                viewModel.stopTimer()
+                showEndSessionAlert = true
+            }) {
+                Text("End Session")
+                    .frame(maxWidth: .infinity)
+                    .padding(14)
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.accent, lineWidth: 2)
+                    )
+                    .foregroundColor(Color.accent)
+                    .padding(.top, 15)
+            }
+            .padding(.horizontal)
+            
+            Button(action: {
+                viewModel.stopTimer()
+                showTaskCompleteAlert = true
+            }) {
+                Text("Task Completed")
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.accent)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+            }
+            .padding(.horizontal)
+            .padding(.top, 10)
+            
+            Spacer()
+        }
+        .alert("Session Ended", isPresented: $showEndSessionAlert, actions: {
+            Button("OK", role: .cancel) {
+                navigateBack = true
+            }
+        }, message: {
+            Text("You tracked \(viewModel.displayTime()) on this task.")
+        })
+        .alert("🎉 Task Completed!", isPresented: $showTaskCompleteAlert, actions: {
+            Button("Great!", role: .cancel) {
+                navigateBack = true
+            }
+        }, message: {
+            Text("Well done! You worked \(viewModel.displayTime()) on this task.")
+        })
+        .padding(.top)
+        .navigationBarBackButtonHidden(true)
+    }
+}
+
+struct TimerActionButton: View {
+    let systemImage: String
+    let action: () -> Void
+    var isFilled: Bool = false
+    var foregroundColor: Color = .black
+    var backgroundColor: Color = Color.clear
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 4) {
+                Image(systemName: systemImage)
+                    .font(.title2)
+            }
+            .foregroundColor(foregroundColor)
+            .padding()
+            .frame(width: 70, height: 70)
+            .background(backgroundColor)
+            .clipShape(Circle())
+            .overlay(
+                Circle()
+                    .stroke(foregroundColor.opacity(0.3), lineWidth: 1)
+            )
+        }
+    }
+}
+
+#Preview {
+    TimerView(taskTitle: "Task Title", goalName: "Goal Name", timerType: FocusTimerType.pomodoro)
+}
