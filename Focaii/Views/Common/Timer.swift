@@ -20,12 +20,15 @@ class FocusTimerViewModel: ObservableObject {
     @Published var isRunning = false
     @Published var timerType: FocusTimerType = .pomodoro
     @Published var totalTime: Int = 1500
+    @Published var startTime: Date?
+
 
     private var timer: Timer?
     private let pomodoroDuration = 25 * 60
 
     func startTimer() {
         isRunning = true
+        startTime = Date()
 
         if timerType == .pomodoro {
             timeRemaining = pomodoroDuration

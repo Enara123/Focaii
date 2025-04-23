@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TimerView: View {
     @StateObject private var viewModel = FocusTimerViewModel()
+    @StateObject private var liveModel = FocusTimerLiveActivityManager()
     @State private var showEndSessionAlert = false
     @State private var showTaskCompleteAlert = false
     @State private var navigateBack = false
@@ -63,7 +64,10 @@ struct TimerView: View {
                 // Cancel
                 TimerActionButton(
                     systemImage: "xmark",
-                    action: viewModel.cancelTimer,
+                    action: {
+                        viewModel.cancelTimer()
+                        liveModel.endLiveActivity()
+                    },
                     foregroundColor: .red.opacity(0.8),
                     backgroundColor: Color.red.opacity(0.1)
                 )
@@ -72,7 +76,17 @@ struct TimerView: View {
                 TimerActionButton(
                     systemImage: viewModel.isRunning ? "pause.fill" : "play.fill",
                     action: {
-                        viewModel.isRunning ? viewModel.pauseTimer() : viewModel.startTimer()
+                        if viewModel.isRunning {
+                            viewModel.pauseTimer()
+                            if let start = viewModel.startTime {
+                                liveModel.updateLiveActivity(isPaused: true)
+                            }
+                        } else {
+                            viewModel.startTimer()
+                            if let start = viewModel.startTime {
+                                liveModel.startLiveActivity(taskName: taskTitle, goalName: goalName)
+                            }
+                        }
                     },
                     isFilled: true,
                     foregroundColor: .gray,
@@ -96,6 +110,7 @@ struct TimerView: View {
             
             Button(action: {
                 viewModel.stopTimer()
+                liveModel.endLiveActivity()
                 showEndSessionAlert = true
             }) {
                 Text("End Session")
@@ -112,6 +127,7 @@ struct TimerView: View {
             
             Button(action: {
                 viewModel.stopTimer()
+                liveModel.endLiveActivity()
                 showTaskCompleteAlert = true
             }) {
                 Text("Task Completed")
