@@ -37,6 +37,13 @@ class FocusTimerViewModel: ObservableObject {
             timeRemaining = 0
             scheduleLongFocusReminder()
         }
+        
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            for request in requests {
+                print("Pending notification: \(request.identifier), trigger: \(String(describing: request.trigger))")
+            }
+        }
+
 
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.updateTimer()

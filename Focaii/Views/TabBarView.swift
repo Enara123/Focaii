@@ -27,7 +27,7 @@ struct TabBarView: View {
             }
 
             NavigationStack {
-//                ProgressHubView()
+                ProgressHubView()
             }
             .tabItem {
                 Image(systemName: "chart.bar")

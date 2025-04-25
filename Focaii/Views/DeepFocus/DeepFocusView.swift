@@ -1,31 +1,36 @@
 //
-//  FocusMenuView.swift
+//  DeepFocusView.swift
 //  Focaii
 //
-//  Created by Siluni on 2025-04-21.
+//  Created by Siluni on 2025-04-23.
 //
 
 import SwiftUI
+import FamilyControls
+import DeviceActivity
 
-struct FocusTimeView: View {
+struct DeepFocusView: View {
     @StateObject private var viewModel = GoalsViewModel()
     @State private var selectedTask: TaskInfo? = nil
     @State private var selectedTimerType: Int = 0
     @State private var navigateToNextView = false
-    @State private var showAlert = false
+    @State private var showAlert: Bool = false
 
     var body: some View {
         ScrollView() {
             VStack(spacing: 20) {
                 VStack(spacing: 4) {
-                    Text("Focus Time")
+                    Text("Deep Focus")
                         .font(.system(size: 20, weight: .heavy))
-                    Text("Track time on tasks")
-                        .padding(.bottom, 20)
+                    Text("Say no to all distractions")
                 }
 
-                Image("Main2")
-
+                Image("Main3")
+                Text("All distracting apps will be blocked in this mode")
+                    .bold()
+                    .multilineTextAlignment(.center)
+                    .font(.footnote)
+                
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Select Timer")
                         .font(.headline)
@@ -76,7 +81,7 @@ struct FocusTimeView: View {
                 }
                 
                 NavigationLink(
-                    destination: TimerView(
+                    destination: DFTimerView(
                         taskTitle: selectedTask?.title ?? "",
                         goalName: selectedTask?.goalName ?? "",
                         timerType: selectedTimerType == 0 ? .pomodoro : .stopwatch
@@ -92,6 +97,7 @@ struct FocusTimeView: View {
                         } else {
                             showAlert = true
                         }
+
                 }) {
                     Text("Start Timer")
                         .frame(maxWidth: .infinity)
@@ -101,7 +107,6 @@ struct FocusTimeView: View {
                                 .stroke(Color.accent, lineWidth: 2)
                         )
                         .foregroundColor(Color.accent)
-                        .padding(.top, 15)
                 }
             }
             .onAppear {
@@ -121,5 +126,5 @@ struct FocusTimeView: View {
 }
 
 #Preview {
-    FocusTimeView()
+    DeepFocusView()
 }

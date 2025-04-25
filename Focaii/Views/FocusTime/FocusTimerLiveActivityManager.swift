@@ -25,10 +25,13 @@ class FocusTimerLiveActivityManager: ObservableObject {
         )
         
         do {
-            activity = try Activity.request(
+            let newActivity = try Activity.request(
                 attributes: attributes,
                 content: .init(state: initialState, staleDate: nil)
             )
+            
+            self.currentActivityID = newActivity.id
+            
             print("Started Live Activity with ID: \(activity?.id ?? "unknown")")
         } catch {
             print("Failed to start Live Activity: \(error)")
@@ -37,7 +40,6 @@ class FocusTimerLiveActivityManager: ObservableObject {
     
     func updateLiveActivity(isPaused: Bool) {
         Task {
-            // Find the activity by ID if we have one saved
             guard let activityID = currentActivityID,
                   let activity = Activity<FocusTimerAttributes>.activities.first(where: { $0.id == activityID }) else {
                 print("No matching activity found to update")
@@ -49,21 +51,26 @@ class FocusTimerLiveActivityManager: ObservableObject {
             // Create new state based on whether we're pausing or resuming
             let newState: FocusTimerAttributes.ContentState
             
+            print("Found activity: \(activity.id)")
+
+
             if isPaused {
-                // Pausing the timer
+                print("Timer is paused.")
                 newState = FocusTimerAttributes.ContentState(
                     startTime: currentState.startTime,
                     isPaused: true,
                     pausedAt: Date(),
                     timerDuration: currentState.timerDuration
                 )
+                
+                print("isPaused: \(newState.isPaused), pausedAt: \(String(describing: newState.pausedAt))")
             } else {
-                // Resuming the timer
-                // If previously paused, adjust the start time
+                print("Timer is resumed.")
                 var adjustedStartTime = currentState.startTime
                 if let pausedAt = currentState.pausedAt {
                     let pausedDuration = pausedAt.timeIntervalSince(currentState.startTime)
                     adjustedStartTime = Date().addingTimeInterval(-pausedDuration)
+                    print("Adjusted startTime after pause: \(adjustedStartTime)")
                 }
                 
                 newState = FocusTimerAttributes.ContentState(
@@ -83,25 +90,11 @@ class FocusTimerLiveActivityManager: ObservableObject {
             if let activityID = currentActivityID,
                let activity = Activity<FocusTimerAttributes>.activities.first(where: { $0.id == activityID }) {
                 await activity.end(dismissalPolicy: .immediate)
-                currentActivityID = nil
+                self.currentActivityID = nil
             } else {
                 for activity in Activity<FocusTimerAttributes>.activities {
                     await activity.end(dismissalPolicy: .immediate)
                 }
-            }
-        }
-    }
-    
-    // Get active Live Activities (useful for restoration and debugging)
-    func getActiveLiveActivities() -> [Activity<FocusTimerAttributes>] {
-        return Activity<FocusTimerAttributes>.activities
-    }
-    
-    // End all active Live Activities (useful if you're hitting the limit)
-    func endAllLiveActivities() {
-        Task {
-            for activity in Activity<FocusTimerAttributes>.activities {
-                await activity.end(dismissalPolicy: .immediate)
             }
         }
     }

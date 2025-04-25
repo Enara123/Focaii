@@ -1,19 +1,22 @@
 //
-//  TimerView.swift
+//  DFTimerView.swift
 //  Focaii
 //
-//  Created by Siluni on 2025-04-21.
+//  Created by Siluni on 2025-04-23.
 //
 
 import SwiftUI
+import FamilyControls
+import DeviceActivity
 
-struct TimerView: View {
+struct DFTimerView: View {
     @StateObject private var viewModel = FocusTimerViewModel()
     @StateObject private var liveModel = FocusTimerLiveActivityManager()
+    @StateObject private var player = MusicManager.shared
     @State private var showEndSessionAlert = false
     @State private var showTaskCompleteAlert = false
     @State private var navigateBack = false
-    
+
     let taskTitle: String
     let goalName: String
     let timerType: FocusTimerType
@@ -57,7 +60,6 @@ struct TimerView: View {
                     .font(.system(size: 36, weight: .semibold, design: .rounded))
             }
             .frame(width: 220, height: 220)
-            .padding(.top, 30)
             
             // Action Buttons
             HStack(spacing: 40) {
@@ -78,10 +80,14 @@ struct TimerView: View {
                     action: {
                         if viewModel.isRunning {
                             viewModel.pauseTimer()
-                            liveModel.updateLiveActivity(isPaused: true)
+                            if let start = viewModel.startTime {
+                                liveModel.updateLiveActivity(isPaused: true)
+                            }
                         } else {
                             viewModel.startTimer()
-                            liveModel.startLiveActivity(taskName: taskTitle, goalName: goalName)
+                            if let start = viewModel.startTime {
+                                liveModel.startLiveActivity(taskName: taskTitle, goalName: goalName)
+                            }
                         }
                     },
                     isFilled: true,
@@ -97,17 +103,20 @@ struct TimerView: View {
                     backgroundColor: Color.blue.opacity(0.1)
                 )
             }
-            .padding(.top, 30)
+            .padding(.top, 20)
             
             NavigationLink( destination: Dashboard(), isActive: $navigateBack
             ) {
                 EmptyView()
             }
             
+            MusicPlayerView()
+            
             Button(action: {
                 viewModel.stopTimer()
                 liveModel.endLiveActivity()
                 showEndSessionAlert = true
+                player.stop()
             }) {
                 Text("End Session")
                     .frame(maxWidth: .infinity)
@@ -125,6 +134,7 @@ struct TimerView: View {
                 viewModel.stopTimer()
                 liveModel.endLiveActivity()
                 showTaskCompleteAlert = true
+                player.stop()
             }) {
                 Text("Task Completed")
                     .frame(maxWidth: .infinity)
@@ -137,6 +147,7 @@ struct TimerView: View {
             .padding(.top, 10)
             
             Spacer()
+
         }
         .alert("Session Ended", isPresented: $showEndSessionAlert, actions: {
             Button("OK", role: .cancel) {
@@ -158,5 +169,6 @@ struct TimerView: View {
 }
 
 #Preview {
-    TimerView(taskTitle: "Task Title", goalName: "Goal Name", timerType: FocusTimerType.pomodoro)
+    DFTimerView(taskTitle: "Task Title", goalName: "Goal Name", timerType: FocusTimerType.pomodoro)
 }
+

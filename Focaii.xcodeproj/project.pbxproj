@@ -15,6 +15,9 @@
 		F59873712DB8BA4C00B1BEEE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */; };
 		F59873722DB8BA4C00B1BEEE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */; };
 		F59873832DB8BA4D00B1BEEE /* FocusTimerExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F59873702DB8BA4C00B1BEEE /* FocusTimerExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F5ACC3202DB9F4EE00BDDD19 /* lofi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5ACC31F2DB9F4EE00BDDD19 /* lofi.mp3 */; };
+		F5ACC3242DBA00FE00BDDD19 /* deepchill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5ACC3232DBA00FE00BDDD19 /* deepchill.mp3 */; };
+		F5ACC3262DBA011200BDDD19 /* slowfi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5ACC3252DBA011200BDDD19 /* slowfi.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,10 @@
 		F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		F59873702DB8BA4C00B1BEEE /* FocusTimerExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FocusTimerExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5ACC31F2DB9F4EE00BDDD19 /* lofi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lofi.mp3; sourceTree = "<group>"; };
+		F5ACC3232DBA00FE00BDDD19 /* deepchill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deepchill.mp3; sourceTree = "<group>"; };
+		F5ACC3252DBA011200BDDD19 /* slowfi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slowfi.mp3; sourceTree = "<group>"; };
+		F5ACC38B2DBA434200BDDD19 /* Focaii.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Focaii.entitlements; path = Focaii/Views/DeepFocus/Focaii.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -160,6 +167,10 @@
 		89B6C1F42D928C6200D3A20E = {
 			isa = PBXGroup;
 			children = (
+				F5ACC38B2DBA434200BDDD19 /* Focaii.entitlements */,
+				F5ACC3232DBA00FE00BDDD19 /* deepchill.mp3 */,
+				F5ACC3252DBA011200BDDD19 /* slowfi.mp3 */,
+				F5ACC31F2DB9F4EE00BDDD19 /* lofi.mp3 */,
 				F52A57C72DB0ED4D00D7C691 /* Data.xcdatamodeld */,
 				89B6C1FF2D928C6200D3A20E /* Focaii */,
 				89B6C2102D928C6200D3A20E /* FocaiiTests */,
@@ -345,6 +356,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5ACC3202DB9F4EE00BDDD19 /* lofi.mp3 in Resources */,
+				F5ACC3242DBA00FE00BDDD19 /* deepchill.mp3 in Resources */,
+				F5ACC3262DBA011200BDDD19 /* slowfi.mp3 in Resources */,
 				F52A577C2DA8E2A700D7C691 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,6 +561,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "$(Focaii)/Focaii.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Focaii/Preview Content\"";
@@ -577,6 +592,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "$(Focaii)/Focaii.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Focaii/Preview Content\"";

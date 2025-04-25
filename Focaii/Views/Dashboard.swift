@@ -69,7 +69,7 @@ struct Dashboard: View {
                     }
                 }
                 
-                NavigationLink(destination: GoalHomeView()) {
+                NavigationLink(destination: ProgressHubView()) {
                     VStack() {
                         Image("Progress")
                             .frame(width: 70, height: 70)
@@ -80,7 +80,7 @@ struct Dashboard: View {
                             .foregroundColor(Color.primary)
                     }
                 }
-                NavigationLink(destination: GoalHomeView()) {
+                NavigationLink(destination: DeepFocusView()) {
                     VStack() {
                         Image("Deep Focus")
                             .frame(width: 70, height: 70)
@@ -105,7 +105,7 @@ struct Dashboard: View {
                             .foregroundColor(Color.primary)
                     }
                 }
-                NavigationLink(destination: GoalHomeView()) {
+                NavigationLink(destination: Text("Oops! Nothing here yet...")) {
                     VStack() {
                         Image("Mind Well")
                             .frame(width: 70, height: 70)
