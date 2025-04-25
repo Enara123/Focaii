@@ -7,81 +7,161 @@
 import SwiftUI
 
 struct SignupView: View {
+    @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var authModel: AuthModel
+
     @State var username: String = ""
     @State var email: String = ""
     @State var password: String = ""
-    
-    
+    @State var confirmPassword: String = ""
+    @State var errorMessage: String? = nil
+    @State var isAttempted: Bool = false
+
     public struct CustomTextFieldStyle : TextFieldStyle {
-            public func _body(configuration: TextField<Self._Label>) -> some View {
-                configuration
-                    .font(.body)
-                    .padding(12)
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .strokeBorder(Color.primary.opacity(0.2), lineWidth: 1)
-                            .shadow( color:.black.opacity(0.9) , radius:2, x:2, y:2)
-                            .background(.white))
-            }
+        public func _body(configuration: TextField<Self._Label>) -> some View {
+            configuration
+                .font(.body)
+                .padding(12)
+                .background(
+                    RoundedRectangle(cornerRadius: 10)
+                        .strokeBorder(Color.primary.opacity(0.2), lineWidth: 1)
+                        .shadow( color:.black.opacity(0.9) , radius:2, x:2, y:2)
+                        .background(.white))
         }
+    }
     
     var body: some View {
-        VStack {
-            Image("Logo")
-                .padding(.bottom, 5)
-            Text("Sign up to join us!")
-                .padding(.bottom, 40)
-            
-            TextField(
-                "Username",
-                text: $username
-            )
-            .padding(.bottom, 10)
-            
-            TextField(
-                "Email",
-                text: $email
-            )
-            .padding(.bottom, 10)
-            
-            TextField(
-                "Password",
-                text: $password
-            )
-            
-            Button(action: {
-                print("Button tapped!")
-            }) {
-                Text("Sign up")
-                    .frame(maxWidth: .infinity, maxHeight: 45)
-                    .background(Color.accent)
-                    .cornerRadius(8)
-                    .foregroundColor(.white)
-                    .padding(.top, 15)
-                    .shadow( color:.black.opacity(0.7) , radius:2, x:2, y:2)
-            }
-            
-            HStack {
-                Text("Don't have an account?")
-                    .font(.callout)
-                    .foregroundColor(.gray)
-                
-                Button(action: {
-                    print("Button tapped!")
-                }) {
-                    Text("Login")
-                        .font(.callout)
-                }
-            }
-            .padding(.top, 5)
+        NavigationStack {
+            VStack {
+                Image("Logo")
+                    .padding(.bottom, 5)
+                Text("Sign up to join us!")
+                    .padding(.bottom, 40)
 
+                //Signup Form
+                TextField("Username", text: $username)
+                    .padding(.bottom, 10)
+                    .accessibilityLabel("Enter username")
+                if isAttempted && !Validator.isValidUsername(username) {
+                    Text("Username must be 3–15 characters, alphanumeric or underscore.")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                        .padding(.horizontal)
+                        .accessibilityLabel("Username must be 3–15 characters, alphanumeric or underscore.")
+                } else if isAttempted && !Validator.isUsernameAllowed(username) {
+                    Text("This username is reserved. Please choose another.")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                        .padding(.horizontal)
+                        .accessibilityLabel("This username is reserved. Please choose another.")
+                }
+
+                TextField("Email", text: $email)
+                    .padding(.bottom, 10)
+                    .accessibilityLabel("Enter email")
+                if isAttempted && !Validator.isValidEmail(email) {
+                    Text("Please enter a valid email.")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                        .padding(.horizontal)
+                        .accessibilityLabel("Please enter a valid email")
+                }
+
+                SecureField("Password", text: $password)
+                    .padding(.bottom, 10)
+                    .accessibilityLabel("Enter password")
+                if isAttempted && !Validator.isStrongPassword(password) {
+                    Text("Password must be at least 8 characters with a number or symbol.")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                        .padding(.horizontal)
+                }
+
+                SecureField("Confirm Password", text: $confirmPassword)
+                    .accessibilityLabel("Enter password again to confirm.")
+                if isAttempted && !Validator.passwordsMatch(password, confirmPassword) {
+                    Text("Passwords are not matching. Please check again.")
+                        .font(.caption)
+                        .foregroundColor(.red)
+                        .padding(.horizontal)
+                        .accessibilityLabel("Passwords are not matching. Please check again")
+                }
+
+                if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .font(.caption)
+                        .padding(.top, 5)
+                        .accessibilityLabel(errorMessage)
+                }
+
+                Button(action: {
+                    isAttempted = true
+                    if validateForm() {
+                        registerNewUser()
+                    }
+                }) {
+                    Text("Sign up")
+                        .frame(maxWidth: .infinity, maxHeight: 45)
+                        .background(Color.accent)
+                        .cornerRadius(8)
+                        .foregroundColor(.white)
+                        .padding(.top, 15)
+                        .shadow(color: .black.opacity(0.7), radius: 2, x: 2, y: 2)
+                        .accessibilityLabel("Sign up Button")
+                        .accessibilityHint("Tap to sign up and create an account.")
+                }
+
+                HStack {
+                    Text("Already have an account?")
+                        .font(.callout)
+                        .foregroundColor(.gray)
+                        .accessibilityLabel("Already have an account?")
+
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Text("Login")
+                            .font(.callout)
+                            .accessibilityLabel("Login link")
+                    }
+                }
+                .frame(alignment: .center)
+                .padding(.top, 5)
+            }
+            .textFieldStyle(CustomTextFieldStyle())
+            .padding(20)
         }
-        .textFieldStyle(CustomTextFieldStyle())
-        .padding(20)
+        .navigationBarBackButtonHidden(true)
     }
 
+    // MARK: - Methods
+
+    func validateForm() -> Bool {
+        guard Validator.isValidUsername(username),
+              Validator.isUsernameAllowed(username),
+              Validator.isValidEmail(email),
+              Validator.isStrongPassword(password),
+              Validator.passwordsMatch(password, confirmPassword)
+        else {
+            return false
+        }
+        return true
+    }
+
+    func registerNewUser() {
+        authModel.signUp(username: username, email: email, password: password) { error in
+            if let error = error {
+                errorMessage = error.localizedDescription
+            } else {
+                errorMessage = nil
+                print("Signup successful")
+            }
+        }
+    }
 }
 
 #Preview {
     SignupView()
+        .environmentObject(AuthModel())
 }

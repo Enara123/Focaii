@@ -6,6 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F52A577C2DA8E2A700D7C691 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F52A577B2DA8E2A700D7C691 /* GoogleService-Info.plist */; };
+		F52A577E2DA8F29B00D7C691 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F52A577D2DA8F29B00D7C691 /* FirebaseFirestore */; };
+		F52A57C92DB0ED4D00D7C691 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F52A57C72DB0ED4D00D7C691 /* Data.xcdatamodeld */; };
+		F59507612DA7C7B3001A5CB1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F59507602DA7C7B3001A5CB1 /* FirebaseAnalytics */; };
+		F59507632DA7C7B3001A5CB1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F59507622DA7C7B3001A5CB1 /* FirebaseAuth */; };
+		F59873712DB8BA4C00B1BEEE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */; };
+		F59873722DB8BA4C00B1BEEE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */; };
+		F59873832DB8BA4D00B1BEEE /* FocusTimerExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F59873702DB8BA4C00B1BEEE /* FocusTimerExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F5ACC3202DB9F4EE00BDDD19 /* lofi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5ACC31F2DB9F4EE00BDDD19 /* lofi.mp3 */; };
+		F5ACC3242DBA00FE00BDDD19 /* deepchill.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5ACC3232DBA00FE00BDDD19 /* deepchill.mp3 */; };
+		F5ACC3262DBA011200BDDD19 /* slowfi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5ACC3252DBA011200BDDD19 /* slowfi.mp3 */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		89B6C20E2D928C6200D3A20E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -21,17 +35,73 @@
 			remoteGlobalIDString = 89B6C1FC2D928C6200D3A20E;
 			remoteInfo = Focaii;
 		};
+		F59873812DB8BA4D00B1BEEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 89B6C1F52D928C6200D3A20E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F598736F2DB8BA4C00B1BEEE;
+			remoteInfo = FocusTimerExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F5643C592DB7DC40003D06E1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F59873832DB8BA4D00B1BEEE /* FocusTimerExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		89B6C1FD2D928C6200D3A20E /* Focaii.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Focaii.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B6C20D2D928C6200D3A20E /* FocaiiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocaiiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89B6C2172D928C6200D3A20E /* FocaiiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocaiiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F52A577B2DA8E2A700D7C691 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F52A57C82DB0ED4D00D7C691 /* Data.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Data.xcdatamodel; sourceTree = "<group>"; };
+		F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F59873702DB8BA4C00B1BEEE /* FocusTimerExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FocusTimerExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5ACC31F2DB9F4EE00BDDD19 /* lofi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lofi.mp3; sourceTree = "<group>"; };
+		F5ACC3232DBA00FE00BDDD19 /* deepchill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deepchill.mp3; sourceTree = "<group>"; };
+		F5ACC3252DBA011200BDDD19 /* slowfi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slowfi.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F5643C002DB7D916003D06E1 /* Exceptions for "Focaii" folder in "Focaii" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 89B6C1FC2D928C6200D3A20E /* Focaii */;
+		};
+		F59873872DB8BA4D00B1BEEE /* Exceptions for "FocusTimer" folder in "FocusTimerExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F598736F2DB8BA4C00B1BEEE /* FocusTimerExtension */;
+		};
+		F598738D2DB8BFF500B1BEEE /* Exceptions for "FocusTimer" folder in "Focaii" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FocusTimerLiveActivity.swift,
+			);
+			target = 89B6C1FC2D928C6200D3A20E /* Focaii */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		89B6C1FF2D928C6200D3A20E /* Focaii */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F5643C002DB7D916003D06E1 /* Exceptions for "Focaii" folder in "Focaii" target */,
+			);
 			path = Focaii;
 			sourceTree = "<group>";
 		};
@@ -45,6 +115,15 @@
 			path = FocaiiUITests;
 			sourceTree = "<group>";
 		};
+		F59873732DB8BA4C00B1BEEE /* FocusTimer */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F598738D2DB8BFF500B1BEEE /* Exceptions for "FocusTimer" folder in "Focaii" target */,
+				F59873872DB8BA4D00B1BEEE /* Exceptions for "FocusTimer" folder in "FocusTimerExtension" target */,
+			);
+			path = FocusTimer;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +131,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F59507612DA7C7B3001A5CB1 /* FirebaseAnalytics in Frameworks */,
+				F59507632DA7C7B3001A5CB1 /* FirebaseAuth in Frameworks */,
+				F52A577E2DA8F29B00D7C691 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,16 +151,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F598736D2DB8BA4C00B1BEEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F59873722DB8BA4C00B1BEEE /* SwiftUI.framework in Frameworks */,
+				F59873712DB8BA4C00B1BEEE /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		89B6C1F42D928C6200D3A20E = {
 			isa = PBXGroup;
 			children = (
+				F5ACC3232DBA00FE00BDDD19 /* deepchill.mp3 */,
+				F5ACC3252DBA011200BDDD19 /* slowfi.mp3 */,
+				F5ACC31F2DB9F4EE00BDDD19 /* lofi.mp3 */,
+				F52A57C72DB0ED4D00D7C691 /* Data.xcdatamodeld */,
 				89B6C1FF2D928C6200D3A20E /* Focaii */,
 				89B6C2102D928C6200D3A20E /* FocaiiTests */,
 				89B6C21A2D928C6200D3A20E /* FocaiiUITests */,
+				F59873732DB8BA4C00B1BEEE /* FocusTimer */,
+				F5643C432DB7DC3F003D06E1 /* Frameworks */,
 				89B6C1FE2D928C6200D3A20E /* Products */,
+				F52A577B2DA8E2A700D7C691 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,8 +186,18 @@
 				89B6C1FD2D928C6200D3A20E /* Focaii.app */,
 				89B6C20D2D928C6200D3A20E /* FocaiiTests.xctest */,
 				89B6C2172D928C6200D3A20E /* FocaiiUITests.xctest */,
+				F59873702DB8BA4C00B1BEEE /* FocusTimerExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F5643C432DB7DC3F003D06E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F5643C442DB7DC3F003D06E1 /* WidgetKit.framework */,
+				F5643C462DB7DC3F003D06E1 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,16 +210,21 @@
 				89B6C1F92D928C6200D3A20E /* Sources */,
 				89B6C1FA2D928C6200D3A20E /* Frameworks */,
 				89B6C1FB2D928C6200D3A20E /* Resources */,
+				F5643C592DB7DC40003D06E1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F59873822DB8BA4D00B1BEEE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				89B6C1FF2D928C6200D3A20E /* Focaii */,
 			);
 			name = Focaii;
 			packageProductDependencies = (
+				F59507602DA7C7B3001A5CB1 /* FirebaseAnalytics */,
+				F59507622DA7C7B3001A5CB1 /* FirebaseAuth */,
+				F52A577D2DA8F29B00D7C691 /* FirebaseFirestore */,
 			);
 			productName = Focaii;
 			productReference = 89B6C1FD2D928C6200D3A20E /* Focaii.app */;
@@ -163,6 +276,28 @@
 			productReference = 89B6C2172D928C6200D3A20E /* FocaiiUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		F598736F2DB8BA4C00B1BEEE /* FocusTimerExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F59873842DB8BA4D00B1BEEE /* Build configuration list for PBXNativeTarget "FocusTimerExtension" */;
+			buildPhases = (
+				F598736C2DB8BA4C00B1BEEE /* Sources */,
+				F598736D2DB8BA4C00B1BEEE /* Frameworks */,
+				F598736E2DB8BA4C00B1BEEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F59873732DB8BA4C00B1BEEE /* FocusTimer */,
+			);
+			name = FocusTimerExtension;
+			packageProductDependencies = (
+			);
+			productName = FocusTimerExtension;
+			productReference = F59873702DB8BA4C00B1BEEE /* FocusTimerExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -184,6 +319,9 @@
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = 89B6C1FC2D928C6200D3A20E;
 					};
+					F598736F2DB8BA4C00B1BEEE = {
+						CreatedOnToolsVersion = 16.2;
+					};
 				};
 			};
 			buildConfigurationList = 89B6C1F82D928C6200D3A20E /* Build configuration list for PBXProject "Focaii" */;
@@ -195,6 +333,9 @@
 			);
 			mainGroup = 89B6C1F42D928C6200D3A20E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F595075F2DA7C7B3001A5CB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 89B6C1FE2D928C6200D3A20E /* Products */;
 			projectDirPath = "";
@@ -203,6 +344,7 @@
 				89B6C1FC2D928C6200D3A20E /* Focaii */,
 				89B6C20C2D928C6200D3A20E /* FocaiiTests */,
 				89B6C2162D928C6200D3A20E /* FocaiiUITests */,
+				F598736F2DB8BA4C00B1BEEE /* FocusTimerExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -212,6 +354,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5ACC3202DB9F4EE00BDDD19 /* lofi.mp3 in Resources */,
+				F5ACC3242DBA00FE00BDDD19 /* deepchill.mp3 in Resources */,
+				F5ACC3262DBA011200BDDD19 /* slowfi.mp3 in Resources */,
+				F52A577C2DA8E2A700D7C691 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +375,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F598736E2DB8BA4C00B1BEEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -236,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F52A57C92DB0ED4D00D7C691 /* Data.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,6 +401,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		89B6C2132D928C6200D3A20E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F598736C2DB8BA4C00B1BEEE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -265,6 +426,11 @@
 			isa = PBXTargetDependency;
 			target = 89B6C1FC2D928C6200D3A20E /* Focaii */;
 			targetProxy = 89B6C2182D928C6200D3A20E /* PBXContainerItemProxy */;
+		};
+		F59873822DB8BA4D00B1BEEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F598736F2DB8BA4C00B1BEEE /* FocusTimerExtension */;
+			targetProxy = F59873812DB8BA4D00B1BEEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -393,11 +559,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Focaii/Preview Content\"";
+				DEVELOPMENT_TEAM = 8A36CARXB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Focaii/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -421,11 +590,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Focaii/Preview Content\"";
+				DEVELOPMENT_TEAM = 8A36CARXB6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Focaii/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -512,6 +684,60 @@
 			};
 			name = Release;
 		};
+		F59873852DB8BA4D00B1BEEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A36CARXB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FocusTimer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FocusTimer;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Siluni.Focaii.FocusTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F59873862DB8BA4D00B1BEEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8A36CARXB6;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FocusTimer/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FocusTimer;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Siluni.Focaii.FocusTimer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -551,7 +777,58 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		F59873842DB8BA4D00B1BEEE /* Build configuration list for PBXNativeTarget "FocusTimerExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F59873852DB8BA4D00B1BEEE /* Debug */,
+				F59873862DB8BA4D00B1BEEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F595075F2DA7C7B3001A5CB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F52A577D2DA8F29B00D7C691 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F595075F2DA7C7B3001A5CB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F59507602DA7C7B3001A5CB1 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F595075F2DA7C7B3001A5CB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		F59507622DA7C7B3001A5CB1 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F595075F2DA7C7B3001A5CB1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		F52A57C72DB0ED4D00D7C691 /* Data.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F52A57C82DB0ED4D00D7C691 /* Data.xcdatamodel */,
+			);
+			currentVersion = F52A57C82DB0ED4D00D7C691 /* Data.xcdatamodel */;
+			path = Data.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 89B6C1F52D928C6200D3A20E /* Project object */;
 }
