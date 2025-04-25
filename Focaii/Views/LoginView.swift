@@ -9,9 +9,9 @@ import SwiftUI
 struct LoginView: View {
     @ObservedObject var authModel: AuthModel
     
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @State private var errorMessage: String? = nil
+    @State var username: String = ""
+    @State var password: String = ""
+    @State var errorMessage: String? = nil
     
     public struct CustomTextFieldStyle : TextFieldStyle {
         public func _body(configuration: TextField<Self._Label>) -> some View {
