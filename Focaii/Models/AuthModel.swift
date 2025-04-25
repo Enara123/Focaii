@@ -95,9 +95,9 @@ class AuthModel: ObservableObject {
                             
                             do {
                                 try context.save()
-                                print("✅ User saved to Core Data")
+                                print("User saved to Core Data")
                             } catch {
-                                print("❌ Failed to save user: \(error)")
+                                print("Failed to save user: \(error)")
                             }
                         }
                         

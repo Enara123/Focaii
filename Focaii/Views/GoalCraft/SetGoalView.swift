@@ -19,8 +19,12 @@ struct SetGoalView: View {
                     Text("Set a goal")
                         .font(.system(size: 20, weight: .heavy))
                     Text("Let's set a SMART goal")
+                        .accessibilityLabel("Let's set a SMART goal together")
                 }
                 RectangleStepIndicator(totalSteps: 3, currentStep: 0)
+                    .accessibilityLabel("There are 3 steps to this process. You are on step 1.")
+                
+                //MARK: - Goal setting form
                 
                 // Goal Name
                 VStack(alignment: .leading, spacing: 10) {
@@ -32,12 +36,15 @@ struct SetGoalView: View {
                             RoundedRectangle(cornerRadius: 18)
                                 .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                         )
+                        .accessibilityLabel("Enter a goal name")
+                        .accessibilityLabel("Example: Score above 80% for final exam")
                 }
                 
                 // Deadline
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Deadline")
                         .font(.headline)
+                        .accessibilityLabel("Set a deadline for your goal")
                     Text("By when do you want to achieve this goal?")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -45,29 +52,39 @@ struct SetGoalView: View {
                         .datePickerStyle(.compact)
                         .padding(10)
                         .background(RoundedRectangle(cornerRadius: 18).stroke(Color.gray.opacity(0.3)))
+                        .accessibilityLabel("Select a date")
                 }
                 
                 // Milestones
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Milestones")
                         .font(.headline)
+                        .accessibilityAddTraits(.isHeader)
+                    
                     Text("What are some major checkpoints to achieve this goal?")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
-                    
-                    ForEach($goalDraft.milestones) { $milestone in
-                        TextField("Milestone", text: $milestone.title)
+                        .accessibilityHint("Describe the milestones needed to complete the goal")
+
+                    ForEach($goalDraft.milestones.indices, id: \.self) { index in
+                        TextField("Milestone \(index + 1)", text: $goalDraft.milestones[index].title)
                             .padding()
-                            .background(RoundedRectangle(cornerRadius: 18).stroke(Color.gray.opacity(0.3)))
+                            .background(
+                                RoundedRectangle(cornerRadius: 18)
+                                    .stroke(Color.gray.opacity(0.3))
+                            )
+                            .accessibilityLabel("Milestone \(index + 1)")
+                            .accessibilityHint("Enter a milestone to reach your goal")
                     }
                 }
-
-                // Display error message if there is one
+                
+                
                 if let errorMessage = errorMessage {
                     Text(errorMessage)
                         .foregroundColor(.red)
                         .font(.subheadline)
                         .padding()
+                        .accessibilityLabel(errorMessage)
                 }
 
                 NavigationLink(destination: SetTasksView(goalDraft: goalDraft), isActive: $shouldNavigate) {
@@ -84,7 +101,7 @@ struct SetGoalView: View {
                         }
                         shouldNavigate = true
                     } else {
-                        errorMessage = "❌ Please fill in all fields correctly."
+                        errorMessage = "Please fill in all fields."
                     }
                 }) {
                     Text("Next")
@@ -94,6 +111,8 @@ struct SetGoalView: View {
                                 .stroke(Color.accent, lineWidth: 2))
                         .foregroundColor(Color.accent)
                         .padding(.top, 15)
+                        .accessibilityLabel("Next Button")
+                        .accessibilityHint("Tap to go to next page")
                 }
                 
             }
@@ -101,6 +120,8 @@ struct SetGoalView: View {
         }
     }
 
+    //MARK: - Methods
+    
     func validateFields() -> Bool {
         let today = Calendar.current.startOfDay(for: Date())
 

@@ -8,11 +8,13 @@
 import ActivityKit
 import Foundation
 
+//Create an instance of the Live Activity Extension
 class FocusTimerLiveActivityManager: ObservableObject {
     @Published private(set) var currentActivityID: String? = nil
     
     private var activity: Activity<FocusTimerAttributes>? = nil
     
+    //Start Live Activity Session
     func startLiveActivity(taskName: String, goalName: String, timerDuration: TimeInterval? = nil) {
         endLiveActivity()
         
@@ -38,6 +40,7 @@ class FocusTimerLiveActivityManager: ObservableObject {
         }
     }
     
+    //Update Ongoing Live Activity Session when timer is paused/resumed
     func updateLiveActivity(isPaused: Bool) {
         Task {
             guard let activityID = currentActivityID,
@@ -48,7 +51,6 @@ class FocusTimerLiveActivityManager: ObservableObject {
             
             let currentState = activity.content.state
             
-            // Create new state based on whether we're pausing or resuming
             let newState: FocusTimerAttributes.ContentState
             
             print("Found activity: \(activity.id)")
@@ -85,6 +87,7 @@ class FocusTimerLiveActivityManager: ObservableObject {
         }
     }
     
+    //End Live Activity Session
     func endLiveActivity() {
         Task {
             if let activityID = currentActivityID,

@@ -20,24 +20,29 @@ struct FocusTimeView: View {
                 VStack(spacing: 4) {
                     Text("Focus Time")
                         .font(.system(size: 20, weight: .heavy))
+                        .accessibilityLabel("Focus Time")
                     Text("Track time on tasks")
                         .padding(.bottom, 20)
                 }
 
                 Image("Main2")
-
+                    .accessibilityHidden(true)
+                
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Select Timer")
                         .font(.headline)
 
                     HStack {
-                        Picker("", selection: $selectedTimerType) {
+                        Picker("Select timer type", selection: $selectedTimerType) {
                             Text("Pomodoro - 25 mins").tag(0)
                             Text("Time Toggle").tag(1)
                         }
                         .labelsHidden()
                         .pickerStyle(MenuPickerStyle())
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .accessibilityLabel("Timer type picker")
+                        .accessibilityValue(selectedTimerType == 0 ? "Pomodoro. 25 minutes" : "Time Toggle")
+                        .accessibilityHint("Double tap to change timer type")
                     }
                     .padding(6)
                     .background(
@@ -49,6 +54,7 @@ struct FocusTimeView: View {
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Pick a Task")
                         .font(.headline)
+                        .accessibilityAddTraits(.isHeader)
 
                     HStack {
                         Picker("Select a Task", selection: $selectedTask) {
@@ -66,7 +72,11 @@ struct FocusTimeView: View {
                         }
                         .pickerStyle(MenuPickerStyle())
                         .frame(maxWidth: .infinity, alignment: .leading)
-
+                        .accessibilityLabel("Task picker")
+                        .accessibilityValue(selectedTask.map {
+                            "\($0.title), from goal \($0.goalName), milestone \($0.milestoneTitle)"
+                        } ?? "No task selected")
+                        .accessibilityHint("Double tap to choose a task for the timer")
                     }
                     .padding(6)
                     .background(
@@ -102,6 +112,8 @@ struct FocusTimeView: View {
                         )
                         .foregroundColor(Color.accent)
                         .padding(.top, 15)
+                        .accessibilityLabel("Start timer button")
+                        .accessibilityHint("Double tap to start timer")
                 }
             }
             .onAppear {
@@ -115,6 +127,7 @@ struct FocusTimeView: View {
                 }
             }, message: {
                 Text("You must select a task to start the timer.")
+                    .accessibilityLabel("You must select a task to start the timer.")
             })
         }
     }

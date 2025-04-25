@@ -19,9 +19,11 @@ struct SetTasksView: View {
                     Text("Break it Down")
                         .font(.system(size: 20, weight: .heavy))
                     Text("Break milestones to tasks")
+                        .accessibilityLabel("Let's break down each milestone into tasks")
                 }
                 
                 RectangleStepIndicator(totalSteps: 3, currentStep: 1)
+                    .accessibilityLabel("You are on step 2.")
                 
                 ForEach($goalDraft.milestones) { $milestone in
                     MilestoneView(milestone: $milestone)
@@ -32,6 +34,7 @@ struct SetTasksView: View {
                         .foregroundColor(.red)
                         .font(.subheadline)
                         .padding()
+                        .accessibilityLabel(errorMessage)
                 }
                 
                 NavigationLink(destination: ReviewGoalView(goalDraft: goalDraft), isActive: $shouldNavigate) {
@@ -50,7 +53,7 @@ struct SetTasksView: View {
                         }
                         shouldNavigate = true
                     } else {
-                        errorMessage = "❌ Please add at least one task to each milestone."
+                        errorMessage = "Please add at least one task to each milestone."
                     }
                 }) {
                     Text("Review Goal")
@@ -60,12 +63,15 @@ struct SetTasksView: View {
                                 .stroke(Color.accent, lineWidth: 2))
                         .foregroundColor(Color.accent)
                         .padding(.top, 15)
+                        .accessibilityLabel("Review Goal Button")
+                        .accessibilityHint("Tap to Review Goal")
                 }
             }
             .padding()
         }
     }
     
+    //MARK: - Methods
     func validateFields() -> Bool {
         return goalDraft.milestones.allSatisfy { milestone in
             milestone.tasks.contains(where: { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty })
@@ -73,6 +79,7 @@ struct SetTasksView: View {
     }
 }
 
+//MARK: - Milestone component to add tasks
 struct MilestoneView: View {
     @Binding var milestone: Milestone
 
@@ -80,9 +87,11 @@ struct MilestoneView: View {
         VStack(alignment: .leading, spacing: 10) {
             Text(milestone.title)
                 .font(.headline)
+                .accessibilityAddTraits(.isHeader)
 
             Text("Add tasks")
                 .font(.system(size: 15))
+                .accessibilityHint("List of tasks under this milestone")
 
             ForEach(milestone.tasks.indices, id: \.self) { index in
                 HStack {
@@ -92,12 +101,16 @@ struct MilestoneView: View {
                             RoundedRectangle(cornerRadius: 18)
                                 .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                         )
+                        .accessibilityLabel("Task \(index + 1) for milestone \(milestone.title)")
+                        .accessibilityHint("Enter the task description")
 
                     Button(action: {
                         milestone.tasks.remove(at: index)
                     }) {
                         Image(systemName: "trash")
                             .foregroundColor(.red)
+                            .accessibilityLabel("Delete task \(index + 1)")
+                            .accessibilityHint("Removes this task from the milestone")
                     }
                     .padding(.leading, 8)
                 }
@@ -114,6 +127,8 @@ struct MilestoneView: View {
                 .foregroundColor(Color.accent)
             }
             .padding(.top, 5)
+            .accessibilityLabel("Add another task button")
+            .accessibilityHint("Adds a new task to this milestone")
         }
     }
 }

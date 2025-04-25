@@ -12,6 +12,7 @@ struct GoalHomeView: View {
         VStack {
             Text("Goal Craft")
                 .font(.system(size: 20, weight: .heavy))
+                .accessibilityLabel("Goal Craft")
             Text("Set up a new guided goal")
                 .padding(.bottom, 20)
             
@@ -39,6 +40,8 @@ struct GoalHomeView: View {
                 .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray))
             }
             .padding(.bottom, 10)
+            .accessibilityLabel("Set a goal")
+            .accessibilityHint("Tap to go to set a goal.")
             
             // Goals in Progress
             NavigationLink(destination: GoalsInProgressView()) {
@@ -64,6 +67,8 @@ struct GoalHomeView: View {
                 .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray))
             }
             .padding(.bottom, 10)
+            .accessibilityLabel("Goals In progress")
+            .accessibilityHint("Tap to go to view goals in progress.")
             
             // Completed Goals
             NavigationLink(destination: CompleteGoalsView()) {
@@ -89,6 +94,8 @@ struct GoalHomeView: View {
                 .background(RoundedRectangle(cornerRadius: 10).stroke(Color.gray))
             }
             .padding(.bottom, 10)
+            .accessibilityLabel("Completed Goals")
+            .accessibilityHint("Tap to go to completed goal.")
             
         }
         .padding()

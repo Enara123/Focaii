@@ -17,6 +17,7 @@ struct ProgressHubView: View {
                 VStack(spacing: 4) {
                     Text("Progress Hub")
                         .font(.system(size: 20, weight: .heavy))
+                        .accessibilityLabel("Progress Hub")
                     Text("Your progress so far")
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -34,8 +35,11 @@ struct ProgressHubView: View {
                         .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                 )
                 .padding(10)
+                .accessibilityLabel("Select a Goal")
+                .accessibilityHint("Tap to choose a goal.")
+                .accessibilityValue(viewModel.goals[selectedGoalIndex].goalName)
                 
-                // Display Dynamic Progress Ring Based on Goal
+                //Dynamic Progress Ring Based on Goal
                 if viewModel.goals.indices.contains(selectedGoalIndex) {
                     let goal = viewModel.goals[selectedGoalIndex]
                     let completionPercentage = goal.completedTasks == 0 ? 0 : Double(goal.completedTasks) / Double(goal.totalTasks)
@@ -43,19 +47,24 @@ struct ProgressHubView: View {
                     ZStack {
                         Circle()
                             .stroke(Color.gray.opacity(0.2), lineWidth: 14)
+                            .accessibility(hidden: true)
                         
                         Circle()
                             .trim(from: 0.0, to: completionPercentage)
                             .stroke(Color.BG_1, style: StrokeStyle(lineWidth: 14, lineCap: .round))
                             .rotationEffect(.degrees(-90))
+                            .accessibilityLabel("Progress circle")
                         
                         Text("\(Int(completionPercentage * 100))%")
                             .font(.system(size: 40, weight: .semibold, design: .rounded))
+                            .accessibilityLabel("Completion Percentage")
+                            .accessibilityValue("\(Int(completionPercentage * 100)) percent")
+                            .accessibilityHint("This indicates your progress.")
                     }
                     .frame(width: 200, height: 200)
                     .padding(.bottom, 20)
                     
-                    // Congrats Banner (Dynamic)
+                    //Congrats Banner
                     Text("Congrats!!\nYou have completed \(Int(completionPercentage * 100))%")
                         .font(.body)
                         .multilineTextAlignment(.center)
@@ -66,24 +75,27 @@ struct ProgressHubView: View {
                         .padding(.horizontal)
                         .shadow(color: .black.opacity(0.2), radius: 2, x: 2, y: 2)
                     
-                    // Dynamic Progress Info
+                    //Progress Info
                     VStack(alignment: .leading, spacing: 30) {
                         HStack {
                             Text("Total Tasks Completed")
                             Spacer()
                             Text("\(goal.completedTasks)/\(goal.totalTasks)").bold()
+                                .accessibilityLabel("Total Tasks Completed \(goal.completedTasks)/\(goal.totalTasks)")
                         }
                         
                         HStack {
                             Text("Total Time Tracked")
                             Spacer()
-                            Text("\(formattedTime(goal.timeTracked))").bold() // Formatting time (hrs:mins)
+                            Text("\(formattedTime(goal.timeTracked))").bold()
+                                .accessibilityLabel("Total Time Tracked \(formattedTime(goal.timeTracked))")
                         }
                         
                         HStack {
                             Text("No. days left")
                             Spacer()
                             Text("\(daysRemaining(for: goal.deadline))").bold()
+                                .accessibilityLabel("No. days left \(daysRemaining(for: goal.deadline))")
                         }
                     }
                     .padding(30)
@@ -98,14 +110,14 @@ struct ProgressHubView: View {
         }
     }
     
-    // Helper function to format time tracked
+    //MARK: - Methods
+    
     private func formattedTime(_ minutes: Int) -> String {
         let hours = minutes / 60
         let mins = minutes % 60
         return "\(hours)hrs \(mins)mins"
     }
     
-    // Helper function to calculate remaining days
     private func daysRemaining(for deadline: Date) -> String {
         let calendar = Calendar.current
         let currentDate = Date()

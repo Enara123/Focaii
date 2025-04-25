@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 class ProgressViewModel: ObservableObject {
-    @Published var goals: [GoalProgress] = [] // The goals array to be displayed
+    @Published var goals: [GoalProgress] = []
     private var db = Firestore.firestore()
     private var cancellables = Set<AnyCancellable>()
     
@@ -30,18 +30,13 @@ class ProgressViewModel: ObservableObject {
                 }
             }
     }
-//    
-//    // Fetch a specific goal from Firestore (if needed for detailed progress info)
-//    func fetchGoalDetails(goalID: String) -> GoalProgress? {
-//        return goals.first { $0.id == goalID }
-//    }
 }
 
 struct GoalProgress: Identifiable, Codable {
-    @DocumentID var id: String? // Firestore auto-generates IDs
+    @DocumentID var id: String?
     var goalName: String
     var totalTasks: Int
     var completedTasks: Int
-    var timeTracked: Int // Time in minutes
+    var timeTracked: Int
     var deadline: Date
 }

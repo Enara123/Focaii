@@ -22,6 +22,7 @@ struct MusicPlayerView: View {
                 VStack(alignment: .leading) {
                     Text("Playing: \(musicManager.currentTrackName.capitalized)")
                         .font(.subheadline)
+                        .accessibilityLabel("Playing: \(musicManager.currentTrackName.capitalized)")
                 }
                 HStack {
                     Button(action: {
@@ -30,6 +31,8 @@ struct MusicPlayerView: View {
                         Image(systemName: "backward.fill")
                             .padding()
                     }
+                    .accessibilityLabel("Previous track")
+                    .accessibilityHint("Double tap to go to previous track")
 
                     Button(action: {
                         musicManager.togglePlayback()
@@ -38,6 +41,8 @@ struct MusicPlayerView: View {
                             .padding(10)
                             .foregroundColor(Color.primary)
                     }
+                    .accessibilityLabel("Pause or Play track")
+                    .accessibilityHint("Double tap to pause or play track")
                     
                     Button(action: {
                         musicManager.nextTrack()
@@ -45,6 +50,8 @@ struct MusicPlayerView: View {
                         Image(systemName: "forward.fill")
                             .padding()
                     }
+                    .accessibilityLabel("Next track")
+                    .accessibilityHint("Double tap to go to next track")
                 }
             }
             .padding(.horizontal)

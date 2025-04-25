@@ -16,6 +16,7 @@ struct TabBarView: View {
             .tabItem {
                 Image(systemName: "house.fill")
                 Text("Home")
+                    .accessibilityLabel("Home tab")
             }
 
             NavigationStack {
@@ -24,6 +25,7 @@ struct TabBarView: View {
             .tabItem {
                 Image(systemName: "clock")
                 Text("Focus Time")
+                    .accessibilityLabel("Focus Time tab. For quick access to focus time tracking.")
             }
 
             NavigationStack {
@@ -32,6 +34,7 @@ struct TabBarView: View {
             .tabItem {
                 Image(systemName: "chart.bar")
                 Text("Progress Hub")
+                    .accessibilityLabel("Progress Hub tab. For quick access to see progress on goals.")
             }
         }
         .accentColor(Color.accent)

@@ -71,7 +71,7 @@ class GoalsViewModel: ObservableObject {
         
         db.collection("usernames").document("Siluni").collection("goals").getDocuments { snapshot, error in
             if let error = error {
-                print("❌ Error fetching goals: \(error.localizedDescription)")
+                print("Error fetching goals: \(error.localizedDescription)")
                 return
             }
 

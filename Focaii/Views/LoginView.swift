@@ -34,9 +34,11 @@ struct LoginView: View {
                 Text("Let's get you in!")
                     .padding(.bottom, 40)
                 
+                //Login Form
                 TextField("Username", text: $username).padding(.bottom, 10)
-                
+                    .accessibilityLabel("Enter username")
                 SecureField("Password", text: $password)
+                    .accessibilityLabel("Enter password")
                 
                 HStack {
                     Spacer()
@@ -54,6 +56,7 @@ struct LoginView: View {
                     Text(errorMessage)
                         .foregroundColor(.red)
                         .font(.caption)
+                        .accessibilityLabel(errorMessage)
                 }
                 
                 Button(action: {
@@ -66,12 +69,15 @@ struct LoginView: View {
                         .foregroundColor(.white)
                         .padding(.top, 15)
                         .shadow(color: .black.opacity(0.7), radius: 2, x: 2, y: 2)
+                        .accessibilityLabel("Login Button")
+                        .accessibilityHint("Tap to login.")
                 }
 
                 HStack {
                     Text("Don't have an account?")
                         .font(.callout)
                         .foregroundColor(.gray)
+                        .accessibilityLabel("Don't have an account message")
                     
                     NavigationLink {
                         SignupView()
@@ -79,6 +85,7 @@ struct LoginView: View {
                         Text("Sign up")
                             .font(.callout)
                     }
+                    .accessibilityLabel("Sign up link")
                 }
                 .padding(.top, 5)
             }

@@ -80,6 +80,7 @@ class FocusTimerViewModel: ObservableObject {
     func cancelTimer() {
         pauseTimer()
         timeRemaining = 0
+        //Remove notification when session is cancelled
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["pomodoro_complete", "break_reminder"])
     }
 
@@ -87,6 +88,7 @@ class FocusTimerViewModel: ObservableObject {
         timer?.invalidate()
         timer = nil
         isRunning = false
+        //Remove notification when session ends
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["pomodoro_complete", "break_reminder"])
     }
 
@@ -157,6 +159,7 @@ class FocusTimerViewModel: ObservableObject {
         }
     }
     
+    //MARK: - Schedule Timer Notifications
     func schedulePomodoroCompletionNotification() {
         let content = UNMutableNotificationContent()
         content.title = "Pomodoro Completed 🎉"

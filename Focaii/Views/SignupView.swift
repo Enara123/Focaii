@@ -38,31 +38,38 @@ struct SignupView: View {
                 Text("Sign up to join us!")
                     .padding(.bottom, 40)
 
+                //Signup Form
                 TextField("Username", text: $username)
                     .padding(.bottom, 10)
+                    .accessibilityLabel("Enter username")
                 if isAttempted && !Validator.isValidUsername(username) {
                     Text("Username must be 3–15 characters, alphanumeric or underscore.")
                         .font(.caption)
                         .foregroundColor(.red)
                         .padding(.horizontal)
+                        .accessibilityLabel("Username must be 3–15 characters, alphanumeric or underscore.")
                 } else if isAttempted && !Validator.isUsernameAllowed(username) {
                     Text("This username is reserved. Please choose another.")
                         .font(.caption)
                         .foregroundColor(.red)
                         .padding(.horizontal)
+                        .accessibilityLabel("This username is reserved. Please choose another.")
                 }
 
                 TextField("Email", text: $email)
                     .padding(.bottom, 10)
+                    .accessibilityLabel("Enter email")
                 if isAttempted && !Validator.isValidEmail(email) {
                     Text("Please enter a valid email.")
                         .font(.caption)
                         .foregroundColor(.red)
                         .padding(.horizontal)
+                        .accessibilityLabel("Please enter a valid email")
                 }
 
                 SecureField("Password", text: $password)
                     .padding(.bottom, 10)
+                    .accessibilityLabel("Enter password")
                 if isAttempted && !Validator.isStrongPassword(password) {
                     Text("Password must be at least 8 characters with a number or symbol.")
                         .font(.caption)
@@ -71,11 +78,13 @@ struct SignupView: View {
                 }
 
                 SecureField("Confirm Password", text: $confirmPassword)
+                    .accessibilityLabel("Enter password again to confirm.")
                 if isAttempted && !Validator.passwordsMatch(password, confirmPassword) {
                     Text("Passwords are not matching. Please check again.")
                         .font(.caption)
                         .foregroundColor(.red)
                         .padding(.horizontal)
+                        .accessibilityLabel("Passwords are not matching. Please check again")
                 }
 
                 if let errorMessage = errorMessage {
@@ -83,9 +92,9 @@ struct SignupView: View {
                         .foregroundColor(.red)
                         .font(.caption)
                         .padding(.top, 5)
+                        .accessibilityLabel(errorMessage)
                 }
 
-                // Sign up button
                 Button(action: {
                     isAttempted = true
                     if validateForm() {
@@ -99,18 +108,22 @@ struct SignupView: View {
                         .foregroundColor(.white)
                         .padding(.top, 15)
                         .shadow(color: .black.opacity(0.7), radius: 2, x: 2, y: 2)
+                        .accessibilityLabel("Sign up Button")
+                        .accessibilityHint("Tap to sign up and create an account.")
                 }
 
                 HStack {
                     Text("Already have an account?")
                         .font(.callout)
                         .foregroundColor(.gray)
+                        .accessibilityLabel("Already have an account?")
 
                     Button(action: {
                         dismiss()
                     }) {
                         Text("Login")
                             .font(.callout)
+                            .accessibilityLabel("Login link")
                     }
                 }
                 .frame(alignment: .center)

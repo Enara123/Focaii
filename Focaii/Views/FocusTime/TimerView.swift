@@ -28,6 +28,7 @@ struct TimerView: View {
                     .lineLimit(nil)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.bottom, 10)
+                    .accessibilityLabel(taskTitle)
 
                 Text(goalName)
                     .font(.subheadline)
@@ -38,11 +39,12 @@ struct TimerView: View {
                     .onAppear {
                         viewModel.timerType = timerType
                     }
+                    .accessibilityLabel(goalName)
             }
             .frame(maxWidth: .infinity)
             .padding()
             
-            // Timer Ring
+            // Dynamic Timer Ring
             ZStack {
                 Circle()
                     .stroke(Color.gray.opacity(0.2), lineWidth: 12)
@@ -59,9 +61,8 @@ struct TimerView: View {
             .frame(width: 220, height: 220)
             .padding(.top, 30)
             
-            // Action Buttons
+            // Timer Action Buttons
             HStack(spacing: 40) {
-                // Cancel
                 TimerActionButton(
                     systemImage: "xmark",
                     action: {
@@ -71,8 +72,9 @@ struct TimerView: View {
                     foregroundColor: .red.opacity(0.8),
                     backgroundColor: Color.red.opacity(0.1)
                 )
+                .accessibilityLabel("Cancel timer")
+                .accessibilityHint("Stops the current focus time session.")
                 
-                // Pause or Play
                 TimerActionButton(
                     systemImage: viewModel.isRunning ? "pause.fill" : "play.fill",
                     action: {
@@ -88,14 +90,17 @@ struct TimerView: View {
                     foregroundColor: .gray,
                     backgroundColor: Color.gray.opacity(0.2)
                 )
+                .accessibilityLabel("Pause or Play timer")
+                .accessibilityHint("Starts and pauses the current focus time session.")
                 
-                // Restart
                 TimerActionButton(
                     systemImage: "gobackward",
                     action: viewModel.restartTimer,
                     foregroundColor: .blue,
                     backgroundColor: Color.blue.opacity(0.1)
                 )
+                .accessibilityLabel("Reset timer")
+                .accessibilityHint("Researt the current focus time session.")
             }
             .padding(.top, 30)
             
@@ -118,6 +123,8 @@ struct TimerView: View {
                     )
                     .foregroundColor(Color.accent)
                     .padding(.top, 15)
+                    .accessibilityLabel("End session button")
+                    .accessibilityHint("Double tap to end the focus time session")
             }
             .padding(.horizontal)
             
@@ -132,6 +139,8 @@ struct TimerView: View {
                     .background(Color.accent)
                     .foregroundColor(.white)
                     .cornerRadius(12)
+                    .accessibilityLabel("Task completed button")
+                    .accessibilityHint("Double tap to mark the task as complete")
             }
             .padding(.horizontal)
             .padding(.top, 10)
@@ -144,6 +153,7 @@ struct TimerView: View {
             }
         }, message: {
             Text("You tracked \(viewModel.displayTime()) on this task.")
+                .accessibilityLabel("You tracked \(viewModel.displayTime()) on this task.")
         })
         .alert("🎉 Task Completed!", isPresented: $showTaskCompleteAlert, actions: {
             Button("Great!", role: .cancel) {
@@ -151,6 +161,7 @@ struct TimerView: View {
             }
         }, message: {
             Text("Well done! You worked \(viewModel.displayTime()) on this task.")
+                .accessibilityLabel("Well done! You worked \(viewModel.displayTime()) on this task.")
         })
         .padding(.top)
         .navigationBarBackButtonHidden(true)

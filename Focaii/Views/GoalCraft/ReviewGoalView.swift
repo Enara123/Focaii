@@ -23,6 +23,7 @@ struct ReviewGoalView: View {
                     Text("Review Goal")
                         .font(.system(size: 20, weight: .heavy))
                     Text("See if it's all good")
+                        .accessibilityLabel("Review your goal")
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
 
@@ -30,10 +31,12 @@ struct ReviewGoalView: View {
                 
                 // Goal Overview Card
                 VStack(alignment: .leading, spacing: 20) {
+                    // Goal Header
                     Text(goalDraft.goalName)
                         .font(.title2)
                         .bold()
                         .frame(width: 300, alignment: .leading)
+                        .accessibilityLabel("Goal title: \(goalDraft.goalName)")
 
                     HStack {
                         Image(systemName: "calendar")
@@ -42,6 +45,7 @@ struct ReviewGoalView: View {
                     .font(.subheadline)
                     .foregroundColor(.primary)
                     .frame(width: 300, alignment: .leading)
+                    .accessibilityLabel("Deadline is \(formatDate(goalDraft.deadline))")
                 }
                 .frame(width: 320)
                 .padding()
@@ -51,7 +55,6 @@ struct ReviewGoalView: View {
                         .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
                 )
 
-
                 // Milestones Section
                 VStack(alignment: .leading, spacing: 20) {
                     ForEach(goalDraft.milestones.indices, id: \.self) { i in
@@ -60,6 +63,7 @@ struct ReviewGoalView: View {
                             Text("Milestone \(i + 1): \(milestone.title)")
                                 .font(.headline)
                                 .frame(width: 300, alignment: .leading)
+                                .accessibilityLabel("Milestone \(i + 1): \(milestone.title)")
 
                             VStack(alignment: .leading, spacing: 6) {
                                 ForEach(milestone.tasks.filter { !$0.isEmpty }, id: \.self) { task in
@@ -69,6 +73,7 @@ struct ReviewGoalView: View {
                                         Text(task)
                                             .font(.subheadline)
                                             .frame(width: 260, alignment: .leading)
+                                            .accessibilityLabel("Task: \(task)")
                                     }
                                 }
                             }
@@ -81,6 +86,7 @@ struct ReviewGoalView: View {
                                 .fill(Color(.systemBackground))
                                 .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
                         )
+                        .accessibilityHint("Review tasks for this milestone")
                     }
                 }
                 
@@ -90,6 +96,7 @@ struct ReviewGoalView: View {
                     }
                 } message: {
                     Text("Your goal has been successfully saved.")
+                        .accessibilityLabel("Your goal has been successfully saved.")
                 }
 
                 NavigationLink(destination: GoalHomeView(), isActive: $shouldNavigate) {
@@ -106,12 +113,15 @@ struct ReviewGoalView: View {
                         .cornerRadius(8)
                         .foregroundColor(.white)
                         .shadow(color: .black.opacity(0.7), radius: 2, x: 2, y: 2)
+                        .accessibilityLabel("Set Goal Button")
+                        .accessibilityHint("Tap to submi goal")
                 }
 
             }
         }
     }
     
+    //MARK: - Firebase function to store goal
     func submitGoalToFirestore() {
         let db = Firestore.firestore()
         guard let userId = Auth.auth().currentUser?.uid else { return }
