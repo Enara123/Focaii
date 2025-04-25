@@ -32,7 +32,9 @@ class FocusTimerLiveActivityManager: ObservableObject {
                 content: .init(state: initialState, staleDate: nil)
             )
             
-            self.currentActivityID = newActivity.id
+            DispatchQueue.main.async {
+                self.currentActivityID = newActivity.id
+            }
             
             print("Started Live Activity with ID: \(activity?.id ?? "unknown")")
         } catch {

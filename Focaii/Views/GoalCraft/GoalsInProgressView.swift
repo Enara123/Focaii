@@ -34,7 +34,6 @@ struct GoalsInProgressView: View {
                         .stroke(Color.gray.opacity(0.3), lineWidth: 1)
                 )
                 .accessibilityLabel("Select a goal")
-                .accessibilityValue(viewModel.goals[selectedGoalIndex].goalName)
                 .accessibilityHint("Double tap to choose a goal")
                 
                 //Dynamically load the details of the goal

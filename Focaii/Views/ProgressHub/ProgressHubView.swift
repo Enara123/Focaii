@@ -37,7 +37,6 @@ struct ProgressHubView: View {
                 .padding(10)
                 .accessibilityLabel("Select a Goal")
                 .accessibilityHint("Tap to choose a goal.")
-                .accessibilityValue(viewModel.goals[selectedGoalIndex].goalName)
                 
                 //Dynamic Progress Ring Based on Goal
                 if viewModel.goals.indices.contains(selectedGoalIndex) {
