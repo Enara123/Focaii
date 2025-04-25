@@ -70,7 +70,6 @@
 		F5ACC31F2DB9F4EE00BDDD19 /* lofi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lofi.mp3; sourceTree = "<group>"; };
 		F5ACC3232DBA00FE00BDDD19 /* deepchill.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = deepchill.mp3; sourceTree = "<group>"; };
 		F5ACC3252DBA011200BDDD19 /* slowfi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slowfi.mp3; sourceTree = "<group>"; };
-		F5ACC38B2DBA434200BDDD19 /* Focaii.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Focaii.entitlements; path = Focaii/Views/DeepFocus/Focaii.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -167,7 +166,6 @@
 		89B6C1F42D928C6200D3A20E = {
 			isa = PBXGroup;
 			children = (
-				F5ACC38B2DBA434200BDDD19 /* Focaii.entitlements */,
 				F5ACC3232DBA00FE00BDDD19 /* deepchill.mp3 */,
 				F5ACC3252DBA011200BDDD19 /* slowfi.mp3 */,
 				F5ACC31F2DB9F4EE00BDDD19 /* lofi.mp3 */,
@@ -561,7 +559,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "$(Focaii)/Focaii.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Focaii/Preview Content\"";
@@ -592,7 +590,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "$(Focaii)/Focaii.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Focaii/Preview Content\"";
